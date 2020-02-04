@@ -57,11 +57,11 @@ function App() {
   return (
     <div className="App">
       <GroupChart
-        eventsHourly={ eventsHourly }
-        eventsDaily={ eventsDaily }
-        statsHourly={ statsHourly }
-        statsDaily={ statsDaily }
-        poi={ poi }
+        eventsHourly={ state.eventsHourly }
+        eventsDaily={ state.eventsDaily }
+        statsHourly={ state.statsHourly }
+        statsDaily={ state.statsDaily }
+        poi={ state.poi }
        />
     </div>
   );
