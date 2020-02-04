@@ -1,4 +1,6 @@
-const express = require('express')
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const pg = require('pg')
 const ENV = require("./environment");
 const path = require("path");
@@ -8,6 +10,10 @@ require("dotenv").config({ path: PATH });
 
 
 const app = express();
+
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 // configs come from standard PostgreSQL env vars
 // https://www.postgresql.org/docs/9.6/static/libpq-envars.html
 const pool = new pg.Pool();
