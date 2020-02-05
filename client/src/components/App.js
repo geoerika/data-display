@@ -10,7 +10,8 @@ function App() {
     eventsDaily: [],
     statsHourly: [],
     statsDaily: [],
-    poi: []
+    poi: [],
+    dataArrived: false
   });
 
   const axiosGet = (url) => {
@@ -47,7 +48,8 @@ function App() {
           eventsDaily: all[1].data,
           statsHourly: all[2].data,
           statsDaily: all[3].data,
-          poi: all[4].data
+          poi: all[4].data,
+          dataArrived: true
         }));
     });
   }, []);
@@ -56,13 +58,14 @@ function App() {
 
   return (
     <div className="App">
-      <GroupChart
-        eventsHourly={ state.eventsHourly }
-        eventsDaily={ state.eventsDaily }
-        statsHourly={ state.statsHourly }
-        statsDaily={ state.statsDaily }
-        poi={ state.poi }
-       />
+      {state.dataArrived && <GroupChart
+                        eventsHourly={ state.eventsHourly }
+                        eventsDaily={ state.eventsDaily }
+                        statsHourly={ state.statsHourly }
+                        statsDaily={ state.statsDaily }
+                        poi={ state.poi }
+                       />
+      }
     </div>
   );
 }
