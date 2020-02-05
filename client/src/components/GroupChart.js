@@ -1,8 +1,15 @@
-import React from "react";
-import { VictoryChart, VictoryGroup, VictoryBar, VictoryLegend, VictoryAxis, VictoryLabel } from 'victory';
-import moment from 'moment';
+import React, { useState } from "react";
+import { VictoryChart, VictoryGroup, VictoryBar, VictoryAxis, VictoryLabel } from 'victory';
+import ChartButtons from './ChartButtons';
 
 export default function GroupChart(props) {
+
+  const [state, setState] = useState({
+    showRevenue: true,
+    showImpressions: true,
+    showClicks: true,
+    showEvents: true
+  });
 
   const dateFormating =(date) => {
     return date.substring(0, 10);
@@ -13,70 +20,81 @@ export default function GroupChart(props) {
   });
 
   let impressionsDailyData = props.statsDaily.map((elem) => {
-    return { x: dateFormating(elem.date), y: Math.log(Number(elem.impressions)) }
+    return { x: dateFormating(elem.date), y: Number(elem.impressions) }
   });
 
   let clicksDailyData = props.statsDaily.map((elem) => {
-    return { x: dateFormating(elem.date), y: Math.log(Number(elem.clicks)) }
+    return { x: dateFormating(elem.date), y: Number(elem.clicks) }
   });
 
   let revenueDailyData = props.statsDaily.map((elem) => {
-    return { x: dateFormating(elem.date), y: Math.log(Number(elem.revenue)) }
+    return { x: dateFormating(elem.date), y: Number(elem.revenue) }
   });
 
-  const substractDayfromDate = (date)=> {
-    let newdate = moment(date);
-    console.log('newdate: ', newdate);
-    return moment(date).subtract(1, 'day').format('YYYY-MM-DD');
-  }
+  // constants passed to hideAddData function so we setState to the right state comp
+  const showRevenue = 'showRevenue';
+  const showImpressions = 'showImpressions';
+  const showClicks = 'showClicks';
+  const showEvents = 'showEvents';
 
-  // let minDomain = {};
-  // if(props.eventsDaily[0]) {
-  //   minDomain = substractDayfromDate(props.eventsDaily[0].date);
-  //   console.log(minDomain);
-  // }
 
-  // eventsDailyData.unshift({x: minDomain, y: 0});
+  const hideAddData = (elem) => {
+    console.log('state in GroupChart: ', state);
+
+    return state[elem] ?
+            setState({...state, [elem]: false}) :
+            setState({...state, [elem]: true});
+  };
 
   return (
     <main className="group_chart">
-      <VictoryChart>
+      <ChartButtons
+        onClickRevenue={ () => hideAddData(showRevenue) }
+        onClickImpressions={ () => hideAddData(showImpressions) }
+        onClickClicks={ () => hideAddData(showClicks) }
+        onClickEvents={ () => hideAddData(showEvents)  }
+      />
+      <VictoryChart
+        domainPadding={25}
+         scale={{y: "log"}}
+        // theme={VictoryTheme.material}
+      >
         <VictoryAxis
           label={'date'}
-          tickLabelComponent={<VictoryLabel style={{fontSize: '8px'}}/>}
-          scale={{y: "log"}}
+          tickLabelComponent={<VictoryLabel style={{fontSize: 6}}/>}
         />
         <VictoryAxis
           dependentAxis={true}
-          tickLabelComponent={<VictoryLabel style={{fontSize: '8px'}}/>}
+          tickLabelComponent={<VictoryLabel style={{fontSize: 6}}/>}
           scale={{y: "log"}}
+          height={100}
         />
-          <VictoryLegend x={40} y={10}
-            orientation="horizontal"
-            gutter={20}
-            colorScale={"blue"}
-            data={[
-              { name: "revenue", symbol: { type: "square"} },
-              { name: "impressions", symbol: { type: "square" } },
-              { name: "clicks", symbol: { type: "square"} },
-              { name: "events", fontSize: '4px', symbol: { type: "square" } },
-            ]}
-          />
-        <VictoryGroup offset={10}
-          colorScale={"blue"}
-        >
-          <VictoryBar
-            data={ revenueDailyData }
-          />
-          <VictoryBar
-            data={ impressionsDailyData }
-          />
-          <VictoryBar
-            data={ clicksDailyData }
-          />
-          <VictoryBar
-            data={ eventsDailyData }
-          />
+
+        <VictoryGroup offset={11}>
+          { state.showRevenue &&
+            <VictoryBar
+              data={ revenueDailyData }
+              style={{ data: { fill: "#940031"}}}
+            />
+          }
+          { state.showImpressions &&
+            <VictoryBar
+              data={ impressionsDailyData }
+              style={{ data: { fill: "#C43343"}}}
+            />
+          }
+          { state.showClicks &&
+            <VictoryBar
+              data={ clicksDailyData }
+              style={{ data: { fill: "#DC5429"}}}
+            />
+          }
+          {  state.showEvents &&
+              <VictoryBar
+                data={ eventsDailyData }
+                style={{ data: { fill: "#FF821D"}}}
+            />
+          }
         </VictoryGroup>
       </VictoryChart>
     </main>
