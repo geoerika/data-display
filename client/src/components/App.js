@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import GroupChart from './GroupChart';
+import BarChart from './BarChart';
 import './App.css';
 
 function App() {
@@ -58,7 +58,7 @@ function App() {
 
   return (
     <div className="App">
-      {state.dataArrived && <GroupChart
+      {state.dataArrived && <BarChart
                         eventsHourly={ state.eventsHourly }
                         eventsDaily={ state.eventsDaily }
                         statsHourly={ state.statsHourly }

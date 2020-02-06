@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { VictoryChart, VictoryGroup, VictoryBar, VictoryAxis, VictoryLabel } from 'victory';
 import ChartButtons from './ChartButtons';
 
-export default function GroupChart(props) {
+export default function BarChart(props) {
 
   const [state, setState] = useState({
     showRevenue: true,
