@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import BarChart from './BarChart';
+import AreaChart from './AreaChart';
 import './App.css';
 
 function App() {
@@ -11,7 +12,9 @@ function App() {
     statsHourly: [],
     statsDaily: [],
     poi: [],
-    dataArrived: false
+    dataArrived: false,
+    showBarChart: false,
+    showAreaChart: false
   });
 
   const axiosGet = (url) => {
@@ -42,30 +45,41 @@ function App() {
         axiosGet('http://localhost:5555/poi')
       )
     ]).then((all) => {
-      console.log('all: ', all);
+        console.log('all: ', all);
         setState(prev => ({
           eventsHourly: all[0].data,
           eventsDaily: all[1].data,
           statsHourly: all[2].data,
           statsDaily: all[3].data,
           poi: all[4].data,
-          dataArrived: true
+          dataArrived: true,
+          showBarChart: false,
+          showAreaChart: true
         }));
     });
   }, []);
 
   console.log('state: ', state);
 
+
   return (
     <div className="App">
-      {state.dataArrived && <BarChart
-                        eventsHourly={ state.eventsHourly }
-                        eventsDaily={ state.eventsDaily }
-                        statsHourly={ state.statsHourly }
-                        statsDaily={ state.statsDaily }
-                        poi={ state.poi }
-                       />
+      { state.dataArrived &&
+        state.showBarChart &&
+        <BarChart
+          eventsDaily={ state.eventsDaily }
+          statsDaily={ state.statsDaily }
+        />
       }
+      { state.dataArrived &&
+        state.showAreaChart &&
+       <AreaChart
+         statsHourly={ state.statsHourly }
+         eventsHourly={ state.eventsHourly }
+       />
+      }
+
+
     </div>
   );
 }
