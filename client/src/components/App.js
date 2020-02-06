@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from './Navigation';
 import BarChart from './BarChart';
@@ -12,10 +13,7 @@ function App() {
     eventsDaily: [],
     statsHourly: [],
     statsDaily: [],
-    poi: [],
-    dataArrived: false,
-    showBarChart: false,
-    showAreaChart: false
+    poi: []
   });
 
   const axiosGet = (url) => {
@@ -52,10 +50,7 @@ function App() {
           eventsDaily: all[1].data,
           statsHourly: all[2].data,
           statsDaily: all[3].data,
-          poi: all[4].data,
-          dataArrived: true,
-          showBarChart: true,
-          showAreaChart: false
+          poi: all[4].data
         }));
     });
   }, []);
@@ -63,23 +58,33 @@ function App() {
   console.log('state: ', state);
 
   return (
-    <div className="App">
+    <main className="App">
       <Navigation/>
-      { state.dataArrived &&
-        state.showBarChart &&
-        <BarChart
-          eventsDaily={ state.eventsDaily }
-          statsDaily={ state.statsDaily }
+      <Switch>
+        <Route path="/dailydata"
+                render={
+                  props => (
+                    <BarChart
+                      eventsDaily={ state.eventsDaily }
+                      statsDaily={ state.statsDaily }
+                    />
+                  )
+                }
         />
-      }
-      { state.dataArrived &&
-        state.showAreaChart &&
-       <AreaChart
-         statsHourly={ state.statsHourly }
-         eventsHourly={ state.eventsHourly }
-       />
-      }
-    </div>
+        <Route path="/hourlydata"
+                render={
+                  props => (
+                    <AreaChart
+                      statsHourly={ state.statsHourly }
+                      eventsHourly={ state.eventsHourly }
+                    />
+                  )
+                }
+        />
+        <Route path="/geodata" component={""} />
+        <Route component={""} />
+      </Switch>
+    </main>
   );
 }
 
