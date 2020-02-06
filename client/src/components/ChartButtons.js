@@ -9,13 +9,13 @@ function ChartButtons(props) {
       <h5 className="title">Click to remove/add data</h5>
       <ButtonToolbar className="justify-content-center button align-items-center">
         <Button
-          className="buttonRevenue"
-          onClick={props.onClickRevenue}
-        >Revenue</Button>
-        <Button
           className="buttonImpressions"
           onClick={props.onClickImpressions}
         >Impressions</Button>
+        <Button
+          className="buttonRevenue"
+          onClick={props.onClickRevenue}
+        >Revenue</Button>
         <Button
           className="buttonClicks"
           onClick={props.onClickClicks}
