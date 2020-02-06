@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navigation from './Navigation';
 import BarChart from './BarChart';
 import AreaChart from './AreaChart';
 import './App.css';
@@ -64,6 +65,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navigation/>
       { state.dataArrived &&
         state.showBarChart &&
         <BarChart
@@ -78,8 +80,6 @@ function App() {
          eventsHourly={ state.eventsHourly }
        />
       }
-
-
     </div>
   );
 }
