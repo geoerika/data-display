@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { VictoryChart, VictoryGroup, VictoryBar, VictoryAxis, VictoryLabel } from 'victory';
+import { VictoryChart, VictoryGroup, VictoryBar, VictoryAxis, VictoryLabel, VictoryTheme } from 'victory';
 import ChartButtons from './ChartButtons';
 
 export default function BarChart(props) {
+
+  console.log('props in BarChart: ', props);
 
   const [state, setState] = useState({
     showRevenue: true,
@@ -47,7 +49,7 @@ export default function BarChart(props) {
   };
 
   return (
-    <main className="group_chart">
+    <main className="bar-chart">
       <ChartButtons
         onClickRevenue={ () => hideAddData(showRevenue) }
         onClickImpressions={ () => hideAddData(showImpressions) }
@@ -57,29 +59,29 @@ export default function BarChart(props) {
       <VictoryChart
         domainPadding={25}
          scale={{y: "log"}}
+         minDomain={{y: 1}}
         // theme={VictoryTheme.material}
       >
         <VictoryAxis
           label={'date'}
-          tickLabelComponent={<VictoryLabel style={{fontSize: 6}}/>}
+          tickLabelComponent={ <VictoryLabel style={{fontSize: 6}}/> }
         />
         <VictoryAxis
+          label={'log'}
           dependentAxis={true}
-          tickLabelComponent={<VictoryLabel style={{fontSize: 6}}/>}
-          scale={{y: "log"}}
-          height={100}
+          tickLabelComponent={ <VictoryLabel style={{fontSize: 6}}/> }
         />
 
         <VictoryGroup offset={11}>
-          { state.showRevenue &&
+        { state.showImpressions &&
             <VictoryBar
-              data={ revenueDailyData }
+              data={ impressionsDailyData }
               style={{ data: { fill: "#940031"}}}
             />
           }
-          { state.showImpressions &&
+          { state.showRevenue &&
             <VictoryBar
-              data={ impressionsDailyData }
+              data={ revenueDailyData }
               style={{ data: { fill: "#C43343"}}}
             />
           }
