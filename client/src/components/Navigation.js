@@ -6,13 +6,13 @@ export default function Navigation() {
   return (
     <Nav variant="tabs">
       <Nav.Item>
-        <Nav.Link href="/dailyData">DailyDataChart</Nav.Link>
+        <Nav.Link href="/dailydata">DailyDataChart</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/hourlyData">HourlyDataChart</Nav.Link>
+        <Nav.Link href="/hourlydata">HourlyDataChart</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-       <Nav.Link href="/hourlyData">GeoMapData</Nav.Link>
+       <Nav.Link href="/geodata">GeoMapData</Nav.Link>
       </Nav.Item>
     </Nav>
   )
