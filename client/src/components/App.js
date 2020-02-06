@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from './Navigation';
+import DailyData from './DailyData';
 import BarChart from './BarChart';
 import AreaChart from './AreaChart';
 import './App.css';
@@ -64,7 +65,7 @@ function App() {
         <Route path="/dailydata"
                 render={
                   props => (
-                    <BarChart
+                    <DailyData
                       eventsDaily={ state.eventsDaily }
                       statsDaily={ state.statsDaily }
                     />
