@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { VictoryChart, VictoryGroup, VictoryBar, VictoryAxis, VictoryLabel, VictoryTheme } from 'victory';
 import ChartButtons from './ChartButtons';
+import './BarChart.css';
 
 export default function BarChart(props) {
 
@@ -34,11 +35,10 @@ export default function BarChart(props) {
   });
 
   // constants passed to hideAddData function so we setState to the right state comp
-  const showRevenue = 'showRevenue';
   const showImpressions = 'showImpressions';
+  const showRevenue = 'showRevenue';
   const showClicks = 'showClicks';
   const showEvents = 'showEvents';
-
 
   const hideAddData = (elem) => {
     console.log('state in GroupChart: ', state);
@@ -51,8 +51,8 @@ export default function BarChart(props) {
   return (
     <main className="bar-chart">
       <ChartButtons
-        onClickRevenue={ () => hideAddData(showRevenue) }
         onClickImpressions={ () => hideAddData(showImpressions) }
+        onClickRevenue={ () => hideAddData(showRevenue) }
         onClickClicks={ () => hideAddData(showClicks) }
         onClickEvents={ () => hideAddData(showEvents)  }
       />
@@ -64,16 +64,27 @@ export default function BarChart(props) {
       >
         <VictoryAxis
           label={'date'}
-          tickLabelComponent={ <VictoryLabel style={{fontSize: 6}}/> }
+          style={{
+            ticks: {stroke: "black", size: 4},
+            axis: { line: {width: 4 } }
+          }}
+          tickLabelComponent={ <VictoryLabel style={{fontSize: 8}}/> }
         />
         <VictoryAxis
           label={'log'}
           dependentAxis={true}
-          tickLabelComponent={ <VictoryLabel style={{fontSize: 6}}/> }
+          style={{
+            ticks: {stroke: "black", size: 4}
+          }}
+          tickValues={[1, 100, 10000, 1000000]}
+          tickLabelComponent={<VictoryLabel
+                                style={{fontSize: 8}}
+                                dx={5}/>
+                              }
         />
 
         <VictoryGroup offset={11}>
-        { state.showImpressions &&
+          { state.showImpressions &&
             <VictoryBar
               data={ impressionsDailyData }
               style={{ data: { fill: "#940031"}}}

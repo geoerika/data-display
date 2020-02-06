@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Button, ButtonToolbar } from 'react-bootstrap';
-import './ChartButtons.css';
 
 function ChartButtons(props) {
 
