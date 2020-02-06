@@ -1,0 +1,115 @@
+.title {
+  margin-top: 1rem;
+}
+
+.button .buttonImpressions {
+  background-color: gold;
+  border-color: gold;
+  color: black;
+  margin: 5px;
+}
+
+.button .buttonImpressions:hover {
+  background-color: gold !important;
+  border-color: gold;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonImpressions:focus {
+  background-color: gold !important;
+  border-color: gold;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonImpressions:active {
+  background-color: "gold" !important;
+  border-color: gold;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonRevenue {
+  background-color: lime;
+  border-color: lime;
+  color: black;
+  margin: 5px;
+}
+
+.button .buttonRevenue:hover {
+  background-color: lime !important;
+  border-color: lime;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonRevenue:focus {
+  background-color: lime !important;
+  border-color: lime;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonRevenue:active {
+  background-color: lime !important;
+  border-color: lime;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonClicks {
+  background-color: magenta;
+  border-color: magenta;
+  color: black;
+  margin: 5px;
+}
+
+.button .buttonClicks:hover {
+  background-color: magenta !important;
+  border-color: magenta;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonClicks:focus {
+  background-color: magenta !important;
+  border-color: magenta;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonClicks:active {
+  background-color: magenta !important;
+  border-color: magenta;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonEvents {
+  background-color: mediumslateblue;
+  border-color: mediumslateblue;
+  color: black;
+  margin: 5px;
+}
+
+.button .buttonEvents:hover {
+  background-color: mediumslateblue !important;
+  border-color: mediumslateblue;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonEvents:focus {
+  background-color: mediumslateblue !important;
+  border-color: mediumslateblue;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonEvents:active {
+  background-color: mediumslateblue !important;
+  border-color: mediumslateblue;
+  outline: none;
+  box-shadow: none !important;
+}
