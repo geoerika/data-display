@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { VictoryChart, VictoryGroup, VictoryBar, VictoryAxis, VictoryLabel, VictoryTheme } from 'victory';
+import React from "react";
+import { VictoryChart, VictoryGroup, VictoryBar, VictoryAxis, VictoryLabel } from 'victory';
 import ChartButtons from './ChartButtons';
 import useHideAddData from '../hooks/useHideAddData';
 import './BarChart.css';

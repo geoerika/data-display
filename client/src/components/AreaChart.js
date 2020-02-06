@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ChartButtons from './ChartButtons';
 import useHideAddData from '../hooks/useHideAddData';
 import './AreaChart.css';
