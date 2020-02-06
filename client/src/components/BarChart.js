@@ -77,7 +77,7 @@ export default function BarChart(props) {
         />
 
         <VictoryGroup offset={11}>
-          { state.showImpressions &&
+          { showImpressions &&
             <VictoryBar
               data={ impressionsDailyData }
               style={{ data: { fill: "#940031"}}}

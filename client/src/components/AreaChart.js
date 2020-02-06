@@ -5,7 +5,7 @@ import './AreaChart.css';
 import { VictoryChart, VictoryAxis, VictoryLabel,
          VictoryGroup, VictoryArea } from 'victory';
 
-export default function AreaChart(props) {
+function AreaChart(props) {
 
   // sets all variables to true to show all data on chart initially
   const { showImpressions,
@@ -54,7 +54,7 @@ export default function AreaChart(props) {
 
 
   return (
-    <main className="area=chart">
+    <main className="area-chart">
       <ChartButtons
         onClickImpressions={ () => hideAddData(SHOWIMPRESSIONS) }
         onClickRevenue={ () => hideAddData(SHOWREVENUE) }
@@ -128,3 +128,5 @@ export default function AreaChart(props) {
     </main>
   );
 }
+
+export default AreaChart;

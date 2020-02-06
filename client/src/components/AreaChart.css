@@ -94,7 +94,7 @@
 }
 
 .button .buttonEvents:hover {
-  background-color: mediumslateblue !important;
+  background-color: gray !important;
   border-color: mediumslateblue;
   outline: none;
   box-shadow: none !important;

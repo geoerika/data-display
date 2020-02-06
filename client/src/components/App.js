@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
 
-   const [state, setState] = useState({
+  const [state, setState] = useState({
     eventsHourly: [],
     eventsDaily: [],
     statsHourly: [],
@@ -54,14 +54,13 @@ function App() {
           statsDaily: all[3].data,
           poi: all[4].data,
           dataArrived: true,
-          showBarChart: false,
-          showAreaChart: true
+          showBarChart: true,
+          showAreaChart: false
         }));
     });
   }, []);
 
   console.log('state: ', state);
-
 
   return (
     <div className="App">
