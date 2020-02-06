@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import ChartButtons from './ChartButtons';
+import useHideAddData from '../hooks/useHideAddData';
 import './AreaChart.css';
-import { VictoryChart, VictoryAxis, VictoryLabel, VictoryGroup, VictoryArea } from 'victory';
+import { VictoryChart, VictoryAxis, VictoryLabel,
+         VictoryGroup, VictoryArea } from 'victory';
 
 export default function AreaChart(props) {
 
-  const [state, setState] = useState({
-    showRevenue: true,
-    showImpressions: true,
-    showClicks: true,
-    showEvents: true
-  });
+  // sets all variables to true to show all data on chart initially
+  const { showImpressions,
+          showRevenue,
+          showClicks,
+          showEvents,
+          hideAddData } = useHideAddData('');
 
   /**
    * createDataArray - adds data for each hour and makes an object for each hour with added data
@@ -44,27 +46,20 @@ export default function AreaChart(props) {
 
   let revenueHourlyData = createDataArray(props.statsHourly, 'revenue');
 
-   // constants passed to hideAddData function so we setState to the right state comp
-  const showImpressions = 'showImpressions';
-  const showRevenue = 'showRevenue';
-  const showClicks = 'showClicks';
-  const showEvents = 'showEvents';
+  // constants passed to hideAddData function so we setState to the right state variables
+  const SHOWIMPRESSIONS = 'showImpressions';
+  const SHOWREVENUE = 'showRevenue';
+  const SHOWCLICKS = 'showClicks';
+  const SHOWEVENTS = 'showEvents';
 
-  const hideAddData = (elem) => {
-    console.log('state in GroupChart: ', state);
-
-    return state[elem] ?
-            setState({...state, [elem]: false}) :
-            setState({...state, [elem]: true});
-  };
 
   return (
     <main className="area=chart">
       <ChartButtons
-        onClickImpressions={ () => hideAddData(showImpressions) }
-        onClickRevenue={ () => hideAddData(showRevenue) }
-        onClickClicks={ () => hideAddData(showClicks) }
-        onClickEvents={ () => hideAddData(showEvents)  }
+        onClickImpressions={ () => hideAddData(SHOWIMPRESSIONS) }
+        onClickRevenue={ () => hideAddData(SHOWREVENUE) }
+        onClickClicks={ () => hideAddData(SHOWCLICKS) }
+        onClickEvents={ () => hideAddData(SHOWEVENTS)  }
       />
       <VictoryChart
          scale={{y: "log"}}
@@ -76,7 +71,6 @@ export default function AreaChart(props) {
           style={{
             ticks: {stroke: "black", size: 4},
             axis: { line: {width: 4 } }
-
           }}
           tickLabelComponent={<VictoryLabel style={{fontSize: 8}}/>}
         />
@@ -97,7 +91,7 @@ export default function AreaChart(props) {
             data: { strokeWidth: 3, fillOpacity: 0.5 }
           }}
         >
-          { state.showImpressions &&
+          { showImpressions &&
             <VictoryArea
               style={{
                 data: { fill: "yellow", stroke: "gold" }
@@ -105,7 +99,7 @@ export default function AreaChart(props) {
               data={impressionsHourlyData}
             />
           }
-          { state.showRevenue &&
+          { showRevenue &&
             <VictoryArea
               style={{
                 data: { fill: "lime", stroke: "lime" }
@@ -113,7 +107,7 @@ export default function AreaChart(props) {
               data={revenueHourlyData}
             />
           }
-          { state.showClicks &&
+          { showClicks &&
             <VictoryArea
               style={{
                 data: { fill: "magenta", stroke: "magenta" }
@@ -121,7 +115,7 @@ export default function AreaChart(props) {
               data={clicksHourlyData}
             />
           }
-          { state.showEvents &&
+          { showEvents &&
             <VictoryArea
               style={{
                 data: { fill: "mediumslateblue", stroke: "mediumslateblue" }

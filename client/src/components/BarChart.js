@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { VictoryChart, VictoryGroup, VictoryBar, VictoryAxis, VictoryLabel, VictoryTheme } from 'victory';
 import ChartButtons from './ChartButtons';
+import useHideAddData from '../hooks/useHideAddData';
 import './BarChart.css';
 
 export default function BarChart(props) {
 
   console.log('props in BarChart: ', props);
 
-  const [state, setState] = useState({
-    showRevenue: true,
-    showImpressions: true,
-    showClicks: true,
-    showEvents: true
-  });
+ // sets all variables to true to show all data on chart initially
+  const { showImpressions,
+          showRevenue,
+          showClicks,
+          showEvents,
+          hideAddData } = useHideAddData('');
 
   const dateFormating =(date) => {
     return date.substring(0, 10);
@@ -34,27 +35,19 @@ export default function BarChart(props) {
     return { x: dateFormating(elem.date), y: Number(elem.revenue) }
   });
 
-  // constants passed to hideAddData function so we setState to the right state comp
-  const showImpressions = 'showImpressions';
-  const showRevenue = 'showRevenue';
-  const showClicks = 'showClicks';
-  const showEvents = 'showEvents';
-
-  const hideAddData = (elem) => {
-    console.log('state in GroupChart: ', state);
-
-    return state[elem] ?
-            setState({...state, [elem]: false}) :
-            setState({...state, [elem]: true});
-  };
+  // constants passed to hideAddData function so we setState to the right state variables
+  const SHOWIMPRESSIONS = 'showImpressions';
+  const SHOWREVENUE = 'showRevenue';
+  const SHOWCLICKS = 'showClicks';
+  const SHOWEVENTS = 'showEvents';
 
   return (
     <main className="bar-chart">
       <ChartButtons
-        onClickImpressions={ () => hideAddData(showImpressions) }
-        onClickRevenue={ () => hideAddData(showRevenue) }
-        onClickClicks={ () => hideAddData(showClicks) }
-        onClickEvents={ () => hideAddData(showEvents)  }
+        onClickImpressions={ () => hideAddData(SHOWIMPRESSIONS) }
+        onClickRevenue={ () => hideAddData(SHOWREVENUE) }
+        onClickClicks={ () => hideAddData(SHOWCLICKS) }
+        onClickEvents={ () => hideAddData(SHOWEVENTS)  }
       />
       <VictoryChart
         domainPadding={25}
@@ -90,19 +83,19 @@ export default function BarChart(props) {
               style={{ data: { fill: "#940031"}}}
             />
           }
-          { state.showRevenue &&
+          { showRevenue &&
             <VictoryBar
               data={ revenueDailyData }
               style={{ data: { fill: "#C43343"}}}
             />
           }
-          { state.showClicks &&
+          { showClicks &&
             <VictoryBar
               data={ clicksDailyData }
               style={{ data: { fill: "#DC5429"}}}
             />
           }
-          {  state.showEvents &&
+          {  showEvents &&
               <VictoryBar
                 data={ eventsDailyData }
                 style={{ data: { fill: "#FF821D"}}}
