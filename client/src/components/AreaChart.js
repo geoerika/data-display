@@ -7,7 +7,7 @@ import { VictoryChart, VictoryAxis, VictoryLabel,
 
 function AreaChart(props) {
 
-  // sets all variables to true to show all data on chart initially
+  // sets all variables to true to show initially all data on chart
   const { showImpressions,
           showRevenue,
           showClicks,
@@ -20,7 +20,7 @@ function AreaChart(props) {
    * @return {array} - a data array with an object for each hour and added data
    */
   const createDataArray = (array, dataType) => {
-    console.log('array: ', array);
+
     let finalArray = [];
     for (let i = 1; i < 24; i++) {
       finalArray[i - 1] = {};
@@ -29,7 +29,7 @@ function AreaChart(props) {
       let hourData = array.filter((elem) => {
         return elem.hour === i;
       });
-      console.log('hourData: ', hourData);
+
       finalArray[i - 1].y =
         hourData.reduce((acc, curElem) => {
           return acc + Number(curElem[dataType]);
@@ -38,12 +38,10 @@ function AreaChart(props) {
     return finalArray;
   }
 
+  // create arrays of objects for displaying data in charts
   let eventsHourlyData = createDataArray(props.eventsHourly, 'events');
-
   let impressionsHourlyData = createDataArray(props.statsHourly, 'impressions');
-
   let clicksHourlyData = createDataArray(props.statsHourly, 'clicks');
-
   let revenueHourlyData = createDataArray(props.statsHourly, 'revenue');
 
   // constants passed to hideAddData function so we setState to the right state variables
@@ -51,7 +49,6 @@ function AreaChart(props) {
   const SHOWREVENUE = 'showRevenue';
   const SHOWCLICKS = 'showClicks';
   const SHOWEVENTS = 'showEvents';
-
 
   return (
     <main className="area-chart">
@@ -72,7 +69,11 @@ function AreaChart(props) {
             ticks: {stroke: "black", size: 4},
             axis: { line: {width: 4 } }
           }}
-          tickLabelComponent={<VictoryLabel style={{fontSize: 8}}/>}
+          tickLabelComponent={
+            <VictoryLabel
+              style={{fontSize: 8}}
+            />
+          }
         />
         <VictoryAxis
           label={'log'}
@@ -81,20 +82,28 @@ function AreaChart(props) {
             ticks: {stroke: "black", size: 4}
           }}
           tickValues={[1, 100, 10000, 1000000]}
-          tickLabelComponent={<VictoryLabel
-                                style={{fontSize: 8}}
-                                dx={5}/>
-                              }
+          tickLabelComponent={
+            <VictoryLabel
+              style={{fontSize: 8}}
+              dx={5}
+            />
+          }
         />
         <VictoryGroup
           style={{
-            data: { strokeWidth: 3, fillOpacity: 0.5 }
+            data: {
+              strokeWidth: 3,
+              fillOpacity: 0.5
+            }
           }}
         >
           { showImpressions &&
             <VictoryArea
               style={{
-                data: { fill: "yellow", stroke: "gold" }
+                data: {
+                  fill: "yellow",
+                  stroke: "gold"
+                }
               }}
               data={impressionsHourlyData}
             />
@@ -102,7 +111,10 @@ function AreaChart(props) {
           { showRevenue &&
             <VictoryArea
               style={{
-                data: { fill: "lime", stroke: "lime" }
+                data: {
+                  fill: "lime",
+                  stroke: "lime"
+                }
               }}
               data={revenueHourlyData}
             />
@@ -110,7 +122,10 @@ function AreaChart(props) {
           { showClicks &&
             <VictoryArea
               style={{
-                data: { fill: "magenta", stroke: "magenta" }
+                data: {
+                  fill: "magenta",
+                  stroke: "magenta"
+                }
               }}
               data={clicksHourlyData}
             />
@@ -118,7 +133,10 @@ function AreaChart(props) {
           { showEvents &&
             <VictoryArea
               style={{
-                data: { fill: "mediumslateblue", stroke: "mediumslateblue" }
+                data: {
+                  fill: "mediumslateblue",
+                  stroke: "mediumslateblue"
+                }
               }}
               data={eventsHourlyData}
             />
