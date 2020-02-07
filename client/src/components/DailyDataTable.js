@@ -15,6 +15,7 @@ function DailyDataTable(props) {
     return {
       ...elem,
       date: elem.date.substring(0, 10),
+       //round up to 2 decimals
       revenue: Number(elem.revenue).toFixed(2)
     }
   });
