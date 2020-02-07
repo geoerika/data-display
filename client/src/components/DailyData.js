@@ -23,7 +23,6 @@ function DailyData(props) {
             })
   };
 
-
   useEffect(() => {
     Promise.all([
       Promise.resolve(
