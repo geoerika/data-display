@@ -15,6 +15,12 @@ export default function BarChart(props) {
           showEvents,
           hideAddData } = useHideAddData('');
 
+  // constants passed to hideAddData function so we setState to the right state variables
+  const SHOWIMPRESSIONS = 'showImpressions';
+  const SHOWREVENUE = 'showRevenue';
+  const SHOWCLICKS = 'showClicks';
+  const SHOWEVENTS = 'showEvents';
+
   const dateFormating =(date) => {
     return date.substring(0, 10);
   };
@@ -34,12 +40,6 @@ export default function BarChart(props) {
   let revenueDailyData = props.statsDaily.map((elem) => {
     return { x: dateFormating(elem.date), y: Number(elem.revenue) }
   });
-
-  // constants passed to hideAddData function so we setState to the right state variables
-  const SHOWIMPRESSIONS = 'showImpressions';
-  const SHOWREVENUE = 'showRevenue';
-  const SHOWCLICKS = 'showClicks';
-  const SHOWEVENTS = 'showEvents';
 
   return (
     <main className="bar-chart">
@@ -95,10 +95,10 @@ export default function BarChart(props) {
               style={{ data: { fill: "#DC5429"}}}
             />
           }
-          {  showEvents &&
-              <VictoryBar
-                data={ eventsDailyData }
-                style={{ data: { fill: "#FF821D"}}}
+          { showEvents &&
+            <VictoryBar
+              data={ eventsDailyData }
+              style={{ data: { fill: "#FF821D"}}}
             />
           }
         </VictoryGroup>

@@ -8,19 +8,19 @@ function ChartButtons(props) {
       <h5 className="title">Click to remove/add data</h5>
       <ButtonToolbar className="justify-content-center button align-items-center">
         <Button
-          className="buttonImpressions"
+          className="buttonImpressions size='sm' "
           onClick={props.onClickImpressions}
         >Impressions</Button>
         <Button
-          className="buttonRevenue"
+          className="buttonRevenue size='sm'"
           onClick={props.onClickRevenue}
         >Revenue</Button>
         <Button
-          className="buttonClicks"
+          className="buttonClicks size='sm'"
           onClick={props.onClickClicks}
         >Clicks</Button>
         <Button
-          className="buttonEvents"
+          className="buttonEvents size='sm'"
           onClick={props.onClickEvents}
         >Events</Button>
       </ButtonToolbar>
