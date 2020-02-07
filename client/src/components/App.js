@@ -3,8 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from './Navigation';
 import DailyData from './DailyData';
-import BarChart from './BarChart';
-import AreaChart from './AreaChart';
+import HourlyData from './HourlyData';
 import './App.css';
 
 function App() {
@@ -14,7 +13,8 @@ function App() {
     eventsDaily: [],
     statsHourly: [],
     statsDaily: [],
-    poi: []
+    poi: [],
+    dataLoading: true
   });
 
   const axiosGet = (url) => {
@@ -51,10 +51,51 @@ function App() {
           eventsDaily: all[1].data,
           statsHourly: all[2].data,
           statsDaily: all[3].data,
-          poi: all[4].data
+          poi: all[4].data,
+          dataLoading: false
         }));
     });
   }, []);
+
+
+  // async const fetchData =() => {
+  //   try {
+  //           this.setState({...this.state, isFetching: true});
+  //           const response = await axios.get(USER_SERVICE_URL);
+  //           this.setState({users: response.data, isFetching: false});
+  //       } catch (e) {
+  //           console.log(e);
+  //           this.setState({...this.state, isFetching: false});
+  //       }
+  //   await Promise.all([
+  //     Promise.resolve(
+  //       axiosGet('http://localhost:5555/events/hourly')
+  //     ),
+  //     Promise.resolve(
+  //       axiosGet('http://localhost:5555/events/daily')
+  //     ),
+  //     Promise.resolve(
+  //       axiosGet('http://localhost:5555/stats/hourly')
+  //     ),
+  //     Promise.resolve(
+  //       axiosGet('http://localhost:5555/stats/daily')
+  //     ),
+  //     Promise.resolve(
+  //       axiosGet('http://localhost:5555/poi')
+  //     )
+  //   ]).then((all) => {
+  //       console.log('all: ', all);
+  //       setState(prev => ({
+  //         eventsHourly: all[0].data,
+  //         eventsDaily: all[1].data,
+  //         statsHourly: all[2].data,
+  //         statsDaily: all[3].data,
+  //         poi: all[4].data,
+  //         dataLoading: false
+  //       }));
+  //   });
+  // }
+
 
   console.log('state: ', state);
 
@@ -63,21 +104,20 @@ function App() {
       <Navigation/>
       <Switch>
         <Route path="/dailydata"
-                render={
-                  props => (
+                render={ props => (
                     <DailyData
                       eventsDaily={ state.eventsDaily }
                       statsDaily={ state.statsDaily }
                     />
-                  )
-                }
+
+                )}
         />
         <Route path="/hourlydata"
                 render={
                   props => (
-                    <AreaChart
-                      statsHourly={ state.statsHourly }
-                      eventsHourly={ state.eventsHourly }
+                    <HourlyData
+                      eventsDaily={ state.eventsHourly }
+                      statsDaily={ state.statsHourly }
                     />
                   )
                 }
@@ -88,5 +128,33 @@ function App() {
     </main>
   );
 }
+
+// return (
+//     <main className="App">
+//       <Navigation/>
+//       <Switch>
+//         <Route path="/dailydata"
+//                 render={ props => (
+//                     <DailyData
+
+//                     />
+
+//                 )}
+//         />
+//         <Route path="/hourlydata"
+//                 render={
+//                   props => (
+//                     <HourlyData
+
+//                     />
+//                   )
+//                 }
+//         />
+//         <Route path="/geodata" component={""} />
+//         <Route component={""} />
+//       </Switch>
+//     </main>
+//   );
+// }
 
 export default App;
