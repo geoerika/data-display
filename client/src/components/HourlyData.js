@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 import AreaChart from './AreaChart';
-import DailyDataTable from './DailyDataTable';
-
+import HourlyDataTable from './HourlyDataTable';
 
 function HourlyData(props) {
 
@@ -44,7 +43,7 @@ function HourlyData(props) {
   return (
     <Container>
       <Row>
-        <Col lg={7}>
+        <Col lg={6}>
           { state.dataArrived &&
             <AreaChart
               eventsHourly={ state.eventsHourly }
@@ -52,8 +51,13 @@ function HourlyData(props) {
             />
           }
         </Col>
-        <Col lg={5}>
-
+        <Col lg={6}>
+          { state.dataArrived &&
+            <HourlyDataTable
+              eventsHourly={ state.eventsHourly }
+              statsHourly={ state.statsHourly }
+            />
+          }
         </Col>
       </Row>
     </Container>
