@@ -43,7 +43,7 @@ app.get('/events/daily', (req, res, next) => {
     SELECT date, SUM(events) AS events
     FROM public.hourly_events
     GROUP BY date
-    ORDER BY date
+    ORDER BY date, hour
     LIMIT 7;
   `
   return next()
