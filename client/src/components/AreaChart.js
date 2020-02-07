@@ -33,7 +33,7 @@ function AreaChart(props) {
       finalArray[i - 1].y =
         hourData.reduce((acc, curElem) => {
           return acc + Number(curElem[dataType]);
-        }, 0)
+      }, 0)
     }
     return finalArray;
   }
