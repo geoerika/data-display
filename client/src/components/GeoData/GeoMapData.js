@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
+import PointOfInterest from './PointOfInterest';
 
 // const AnyReactComponent = ({ text }) => <div>{text}</div>;
 // <AnyReactComponent
@@ -18,10 +19,10 @@ function GeoMapData() {
 
   const [state, setState] = useState({
     center: {
-      lat: 43.6708,
-      lng: -79.3899
+      lat: 44.1906342,
+      lng: -102.4960887
     },
-    zoom: 11,
+    zoom: 4,
     poi: [],
     dataArrived: false
   });
@@ -58,6 +59,13 @@ function GeoMapData() {
 
 console.log('state: ', state);
 
+  let locationList = state.poi.map(location => (
+        <PointOfInterest
+          lat={ location.lat }
+          lng={ location.lon }
+        />
+  ));
+
 
   return (
     // Important! Always set the container height explicitly
@@ -67,6 +75,7 @@ console.log('state: ', state);
         defaultCenter={state.center}
         defaultZoom={state.zoom}
       >
+      { locationList }
       </GoogleMapReact>
     </div>
   );

@@ -7,7 +7,7 @@ import PointOfInterest from './PointOfInterest';
  * @param {array} - poi data array from database
  * @return {array} - a data array with location objects
  */
-function pointOfInterestList(poiCoordinates) {
+function makePointOfInterestList(poiCoordinates) {
 
   let locationList = poiCoordinates.map(location => (
      <PointOfInterest
@@ -20,4 +20,4 @@ function pointOfInterestList(poiCoordinates) {
 
   return locationList;
 }
-export default pointOfInterestList;
+export default makePointOfInterestList;
