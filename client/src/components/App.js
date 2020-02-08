@@ -134,25 +134,10 @@ return (
     <main className="App">
       <Navigation/>
       <Switch>
-        <Route path="/dailydata"
-                render={ props => (
-                    <DailyData
-
-                    />
-
-                )}
-        />
-        <Route path="/hourlydata"
-                render={
-                  props => (
-                    <HourlyData
-
-                    />
-                  )
-                }
-        />
-        <Route path="/geodata" component={GeoMapData} />
-        <Route component={""} />
+        <Route path="/dailydata" component={ DailyData }/>
+        <Route path="/hourlydata" component={ HourlyData }/>
+        <Route path="/geodata" component={ GeoMapData }/>
+        <Route component={""}/>
       </Switch>
     </main>
   );
