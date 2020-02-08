@@ -1,7 +1,6 @@
 import React from "react";
-import ChartButtons from './ChartButtons';
+import Buttons from './Buttons';
 import useHideAddData from '../hooks/useHideAddData';
-import './AreaChart.css';
 import { VictoryChart, VictoryAxis, VictoryLabel,
          VictoryGroup, VictoryArea } from 'victory';
 
@@ -52,7 +51,7 @@ function AreaChart(props) {
 
   return (
     <main className="area-chart">
-      <ChartButtons
+      <Buttons
         onClickImpressions={ () => hideAddData(SHOWIMPRESSIONS) }
         onClickRevenue={ () => hideAddData(SHOWREVENUE) }
         onClickClicks={ () => hideAddData(SHOWCLICKS) }
@@ -101,8 +100,8 @@ function AreaChart(props) {
             <VictoryArea
               style={{
                 data: {
-                  fill: "yellow",
-                  stroke: "gold"
+                  fill: "#FF821D",
+                  stroke: "#FF821D"
                 }
               }}
               data={impressionsHourlyData}
@@ -112,8 +111,8 @@ function AreaChart(props) {
             <VictoryArea
               style={{
                 data: {
-                  fill: "lime",
-                  stroke: "lime"
+                  fill: "#DC5429",
+                  stroke: "#DC5429"
                 }
               }}
               data={revenueHourlyData}
@@ -123,8 +122,8 @@ function AreaChart(props) {
             <VictoryArea
               style={{
                 data: {
-                  fill: "magenta",
-                  stroke: "magenta"
+                  fill: "#C43343",
+                  stroke: "#C43343"
                 }
               }}
               data={clicksHourlyData}
@@ -134,8 +133,8 @@ function AreaChart(props) {
             <VictoryArea
               style={{
                 data: {
-                  fill: "mediumslateblue",
-                  stroke: "mediumslateblue"
+                  fill: "#940031",
+                  stroke: "#940031"
                 }
               }}
               data={eventsHourlyData}

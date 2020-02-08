@@ -1,8 +1,7 @@
 import React from "react";
 import { VictoryChart, VictoryGroup, VictoryBar, VictoryAxis, VictoryLabel } from 'victory';
-import ChartButtons from './ChartButtons';
+import Buttons from './Buttons';
 import useHideAddData from '../hooks/useHideAddData';
-import './BarChart.css';
 
 export default function BarChart(props) {
 
@@ -43,7 +42,7 @@ export default function BarChart(props) {
 
   return (
     <main className="bar-chart">
-      <ChartButtons
+      <Buttons
         onClickImpressions={ () => hideAddData(SHOWIMPRESSIONS) }
         onClickRevenue={ () => hideAddData(SHOWREVENUE) }
         onClickClicks={ () => hideAddData(SHOWCLICKS) }
@@ -80,25 +79,25 @@ export default function BarChart(props) {
           { showImpressions &&
             <VictoryBar
               data={ impressionsDailyData }
-              style={{ data: { fill: "#940031"}}}
+              style={{ data: { fill: "#FF821D"}}}
             />
           }
           { showRevenue &&
             <VictoryBar
               data={ revenueDailyData }
-              style={{ data: { fill: "#C43343"}}}
+              style={{ data: { fill: "#DC5429"}}}
             />
           }
           { showClicks &&
             <VictoryBar
               data={ clicksDailyData }
-              style={{ data: { fill: "#DC5429"}}}
+              style={{ data: { fill: "#C43343"}}}
             />
           }
           { showEvents &&
             <VictoryBar
               data={ eventsDailyData }
-              style={{ data: { fill: "#FF821D"}}}
+              style={{ data: { fill: "#940031"}}}
             />
           }
         </VictoryGroup>
