@@ -1,26 +1,27 @@
 import React from 'react';
 import { Container, Button, ButtonToolbar } from 'react-bootstrap';
+import './Buttons.css';
 
-function ChartButtons(props) {
+function Buttons(props) {
 
   return (
     <Container className="buttonContainer align-items-center">
       <h5 className="title">Click to remove/add data</h5>
       <ButtonToolbar className="justify-content-center button align-items-center">
         <Button
-          className="buttonImpressions size='sm' "
+          className="button buttonImpressions size='sm' "
           onClick={props.onClickImpressions}
         >Impressions</Button>
         <Button
-          className="buttonRevenue size='sm'"
+          className="button buttonRevenue size='sm'"
           onClick={props.onClickRevenue}
         >Revenue</Button>
         <Button
-          className="buttonClicks size='sm'"
+          className="button buttonClicks size='sm'"
           onClick={props.onClickClicks}
         >Clicks</Button>
         <Button
-          className="buttonEvents size='sm'"
+          className="button buttonEvents size='sm'"
           onClick={props.onClickEvents}
         >Events</Button>
       </ButtonToolbar>
@@ -28,4 +29,4 @@ function ChartButtons(props) {
   )
 }
 
-export default ChartButtons;
+export default Buttons;

@@ -1,0 +1,115 @@
+.title {
+  margin-top: 1rem;
+}
+
+.button .buttonEvents {
+  background-color: #940031;
+  color: white;
+  border-color: #940031;
+  margin: 5px;
+}
+
+.button .buttonEvents:hover {
+  background-color: #940031 !important;
+  border-color: #940031;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonEvents:focus {
+  background-color: #940031 !important;
+  border-color: #940031;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonEvents:active {
+  background-color: #940031 !important;
+  border-color: #940031;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonClicks {
+  background-color: #C43343;
+  color: white;
+  border-color: #C43343;
+  margin: 5px;
+}
+
+.button .buttonClicks:hover {
+  background-color: #C43343 !important;
+  border-color: #C43343;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonClicks:focus {
+  background-color: #C43343 !important;
+  border-color: #C43343;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonClicks:active {
+  background-color: #C43343 !important;
+  border-color: #C43343;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonRevenue {
+  background-color: #DC5429;
+  color: white;
+  border-color: #DC5429;
+  margin: 5px;
+}
+
+.button .buttonRevenue:hover {
+  background-color: #DC5429 !important;
+  border-color: #DC5429;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonRevenue:focus {
+  background-color: #DC5429 !important;
+  border-color: #DC5429;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonRevenue:active {
+  background-color: #DC5429 !important;
+  border-color: #DC5429;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonImpressions {
+  background-color: #FF821D;
+  color: white;
+  border-color: #FF821D;
+  margin: 5px;
+}
+
+.button .buttonImpressions:hover {
+  background-color: #FF821D !important;
+  border-color: #FF821D;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonImpressions:focus {
+  background-color: #FF821D !important;
+  border-color: #FF821D;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonImpressions:active {
+  background-color: #FF821D !important;
+  border-color: #FF821D;
+  outline: none;
+  box-shadow: none !important;
+}
