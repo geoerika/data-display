@@ -7,11 +7,16 @@ import DailyDataTable from './DailyDataTable';
 
 function DailyData(props) {
 
+  URL = process.env.REACT_APP_API_ENDPOINT;
+  console.log('URL: ', URL);
+
   const [state, setState] = useState({
     eventsDaily: [],
     statsDaily: [],
     dataArrived: false
   });
+
+
 
   const axiosGet = (url) => {
     return axios
@@ -26,10 +31,10 @@ function DailyData(props) {
   useEffect(() => {
     Promise.all([
       Promise.resolve(
-        axiosGet('http://localhost:5555/events/daily')
+        axiosGet(`${URL}/events/daily`)
       ),
       Promise.resolve(
-        axiosGet('http://localhost:5555/stats/daily')
+        axiosGet(`${URL}/stats/daily`)
       )
     ]).then((all) => {
         console.log('all: ', all);

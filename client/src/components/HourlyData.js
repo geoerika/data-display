@@ -6,6 +6,9 @@ import HourlyDataTable from './HourlyDataTable';
 
 function HourlyData(props) {
 
+  URL = process.env.REACT_APP_API_ENDPOINT;
+  console.log('URL: ', URL);
+
   const [state, setState] = useState({
     eventsHourlyly: [],
     statsHourly: [],
@@ -25,10 +28,10 @@ function HourlyData(props) {
   useEffect(() => {
     Promise.all([
       Promise.resolve(
-        axiosGet('http://localhost:5555/events/hourly')
+        axiosGet(`${URL}/events/hourly`)
       ),
       Promise.resolve(
-        axiosGet('http://localhost:5555/stats/hourly')
+        axiosGet(`${URL}/stats/hourly`)
       )
     ]).then((all) => {
         console.log('all in HourlyData: ', all);
