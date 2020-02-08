@@ -4,7 +4,7 @@ import axios from 'axios';
 import Navigation from './Navigation';
 import DailyData from './DailyData';
 import HourlyData from './HourlyData';
-import GeoMapData from './GeoData/GeoMapData';
+import GeoData from './GeoData/index';
 import './App.css';
 
 function App() {
@@ -136,7 +136,7 @@ return (
       <Switch>
         <Route path="/dailydata" component={ DailyData }/>
         <Route path="/hourlydata" component={ HourlyData }/>
-        <Route path="/geodata" component={ GeoMapData }/>
+        <Route path="/geodata" component={ GeoData }/>
         <Route component={""}/>
       </Switch>
     </main>
