@@ -4,6 +4,7 @@ import axios from 'axios';
 import Navigation from './Navigation';
 import DailyData from './DailyData';
 import HourlyData from './HourlyData';
+import GeoMapData from './GeoData/GeoMapData';
 import './App.css';
 
 function App() {
@@ -122,7 +123,7 @@ function App() {
                   )
                 }
         />
-        <Route path="/geodata" component={""} />
+        <Route path="/geodata" component={GeoMapData} />
         <Route component={""} />
       </Switch>
     </main>
