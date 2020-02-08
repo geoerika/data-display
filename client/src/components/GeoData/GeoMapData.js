@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
-import makePointOfInterestList from './makePointOfInterestList';
-
-// const AnyReactComponent = ({ text }) => <div>{text}</div>;
-// <AnyReactComponent
-        //   lat={59.955413}
-        //   lng={30.337844}
-        //   text="My Marker"
-        // />
+import makePointOfInterestList from './helpers/makePointOfInterestList';
+import makePointDataList from './helpers/makePointDataList';
 
 function GeoMapData() {
 
@@ -24,6 +18,7 @@ function GeoMapData() {
     },
     zoom: 4,
     poi: [],
+    geoData: [],
     dataArrived: false
   });
 
@@ -41,17 +36,16 @@ function GeoMapData() {
     Promise.all([
       Promise.resolve(
         axiosGet(`${URL}/poi`)
+      ),
+      Promise.resolve(
+        axiosGet(`${URL}/geo`)
       )
-      // ,
-      // Promise.resolve(
-      //   axiosGet('http://localhost:5555/stats/hourly')
-      // )
     ]).then((all) => {
         console.log('all in GEO: ', all);
         setState(prev => ({
           ...state,
           poi: all[0].data,
-          // statsHourly: all[1].data,
+          geoData: all[1].data,
           dataArrived: true
         }));
     });
@@ -60,6 +54,10 @@ function GeoMapData() {
 console.log('state: ', state);
 
   let locationList = makePointOfInterestList(state.poi);
+  let pointEventsList = makePointDataList(state.geoData, "events");
+  let pointImpressionsList = makePointDataList(state.geoData, "impressions");
+  let pointRevenueList = makePointDataList(state.geoData, "revenue");
+  let pointClicksList = makePointDataList(state.geoData, "clicks");
 
   return (
     // Important! Always set the container height explicitly
@@ -69,7 +67,9 @@ console.log('state: ', state);
         defaultCenter={state.center}
         defaultZoom={state.zoom}
       >
-      { locationList }
+
+      { pointClicksList }
+
       </GoogleMapReact>
     </div>
   );
