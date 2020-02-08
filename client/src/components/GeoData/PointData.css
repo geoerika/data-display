@@ -1,0 +1,6 @@
+.circle {
+  border-radius: "50%";
+  background-color:"#940031";
+  border-color: red;
+  opacity: 0.5
+}
