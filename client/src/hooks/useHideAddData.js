@@ -11,7 +11,8 @@ export default function useHideAddData(elem) {
     showRevenue: true,
     showImpressions: true,
     showClicks: true,
-    showEvents: true
+    showEvents: true,
+    showDataTable: false,
   });
 
   console.log('state in hook: ', state);
