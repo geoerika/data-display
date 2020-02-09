@@ -4,6 +4,8 @@ import './Buttons.css';
 
 function Buttons(props) {
 
+  console.log('props in Buttons: ', props);
+
   return (
     <Container className="buttonContainer align-items-center">
       <h5 className="title">Click to remove/add data</h5>
@@ -24,6 +26,10 @@ function Buttons(props) {
           className="button buttonEvents size='sm'"
           onClick={props.onClickEvents}
         >Events</Button>
+        {props.showDataTableButton && <Button
+          className="button buttonRevenue size='sm'"
+          onClick={props.onClickTable}
+        >Data Table</Button>}
       </ButtonToolbar>
     </Container>
   )
