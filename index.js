@@ -73,14 +73,6 @@ app.get('/stats/daily', (req, res, next) => {
 
 app.get('/poi', (req, res, next) => {
   req.sqlQuery = `
-    SELECT *
-    FROM public.poi;
-  `
-  return next()
-}, queryHandler)
-
-app.get('/geo', (req, res, next) => {
-  req.sqlQuery = `
     SELECT  p.poi_id, p.name, p.lat, p.lon,
             SUM(impressions) AS impressions,
             SUM(clicks) AS clicks,
