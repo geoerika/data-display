@@ -1,26 +1,36 @@
 import React from "react";
 import MaterialTable, { MTableToolbar } from "material-table";
 
-function GeoDataTable(props) {
+/**
+ * GeoDataTable - functional React component which displays the data table on the map page.
+ * @param {Object} props - array of objects containing locations and data associated with them.
+ * @return {Array<any>} - React component containing a table with locations and related data.
+ */
+const GeoDataTable = (props) => {
 
-  // props.eventsDaily.forEach(elem => {
-  //   for(let i = 0; i <  props.eventsDaily.length; i++) {
-  //     if(props.statsDaily[i].date === elem.date) {
-  //       props.statsDaily[i].events = elem.events;
-  //     }
-  //   }
-  // })
+  /**
+   * createDataArray - prepares data array to display in the map table.
+   * @param {Array<any>} - data array from database with locations and related data.
+   * @return {Array<any>} - processed data array to display in the table on the map page.
+   */
+  const createDataArray = (array) => {
 
-  // let dataList = props.statsDaily.map(elem => {
-  //   return {
-  //     ...elem,
-  //     date: elem.date.substring(0, 10),
-  //      //round up to 2 decimals
-  //     revenue: Number(elem.revenue).toFixed(2)
-  //   }
-  // });
+    for(let i = 0; i < array.length; i++) {
+      // console.log("array[i][`impressions`]: ", array[i][`impressions`]);
+      // console.log("Number(array[i][`impressions)`]: ", Number(array[i][`impressions`]));
+      array[i].impressions = Number(array[i].impressions);
+      array[i].revenue = Number(array[i].revenue).toFixed(2);
+      array[i].clicks = Number(array[i].clicks);
+      array[i].events = Number(array[i].events);
+    }
+    console.log('array: ', array);
 
-  // console.log('dataList: ', dataList);
+    return array;
+  };
+
+  //array with data passed to table.
+  let poiTableData = createDataArray(props.poiData);
+  console.log('poiTableData: ', poiTableData);
 
   return (
     <div style={{ maxWidth: "100%" }}>
@@ -43,17 +53,17 @@ function GeoDataTable(props) {
           headerStyle:{ color :'#940031', fontWeight: 'bold' }
         }}
         columns={[
-          { title: "Name", field: "name", cellStyle:{ padding: '10px'} },
+          { title: "Location", field: "name", cellStyle:{ padding: '10px'} },
           { title: "Impressions", field: "impressions" },
           { title: "Revenue", field: "revenue" },
           { title: "Clicks", field: "clicks" },
           { title: "Events", field: "events" },
         ]}
-        data={[]}
+        data={poiTableData}
         title="POI Data"
       />
     </div>
   );
-}
+};
 
 export default GeoDataTable;

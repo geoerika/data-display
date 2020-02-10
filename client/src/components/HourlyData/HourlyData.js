@@ -1,30 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosGet from '../shared/getData';
 import { Container, Row, Col } from 'react-bootstrap';
 import AreaChart from './AreaChart';
 import HourlyDataTable from './HourlyDataTable';
 
-function HourlyData(props) {
+/**
+ * HourlyData - fetches hourly data from database and
+ *              returns a React component displaying hourly data.
+ * @return {Promise<any>} - a React component whcih contains a chart, table, and buttons.
+ */
+const HourlyData = (props) => {
 
-  URL = process.env.REACT_APP_API_ENDPOINT;
-  console.log('URL: ', URL);
+  const URL = process.env.REACT_APP_API_ENDPOINT;
 
   const [state, setState] = useState({
-    eventsHourlyly: [],
+    eventsHourly: [],
     statsHourly: [],
     dataArrived: false
   });
 
-  function axiosGet (url) {
-    return axios
-            .get(url)
-            .catch((error) => {
-              console.log(error.response.status);
-              console.log(error.response.headers);
-              console.log(error.response.data);
-            })
-  };
-
+  //hook to fetch data from database and set state.
   useEffect(() => {
     Promise.all([
       Promise.resolve(
@@ -65,6 +60,6 @@ function HourlyData(props) {
       </Row>
     </Container>
   )
-}
+};
 
 export default HourlyData;

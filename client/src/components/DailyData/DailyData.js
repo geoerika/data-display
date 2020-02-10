@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosGet from '../shared/getData';
 import { Container, Row, Col } from 'react-bootstrap';
 import BarChart from './BarChart';
 import DailyDataTable from './DailyDataTable';
 
-
-function DailyData(props) {
+/**
+ * DailyData - fetches daily data from database and returns a React component showing daily data.
+ * @return {Promise<any>} - a React component which contains a chart, table and buttons.
+ */
+const DailyData = () => {
 
   URL = process.env.REACT_APP_API_ENDPOINT;
-  console.log('URL: ', URL);
 
   const [state, setState] = useState({
     eventsDaily: [],
@@ -16,18 +18,9 @@ function DailyData(props) {
     dataArrived: false
   });
 
+  console.log('state in daily Data: ', state);
 
-
-  const axiosGet = (url) => {
-    return axios
-            .get(url)
-            .catch((error) => {
-              console.log(error.response.status);
-              console.log(error.response.headers);
-              console.log(error.response.data);
-            })
-  };
-
+  //hook to fetch data from database and set state.
   useEffect(() => {
     Promise.all([
       Promise.resolve(
@@ -37,7 +30,6 @@ function DailyData(props) {
         axiosGet(`${URL}/stats/daily`)
       )
     ]).then((all) => {
-        console.log('all: ', all);
         setState(prev => ({
           eventsDaily: all[0].data,
           statsDaily: all[1].data,
@@ -46,24 +38,30 @@ function DailyData(props) {
     });
   }, []);
 
+  console.log('state in daily Data: ', state);
+
   return (
     <Container>
       <Row>
-        <Col lg={7}>
-          {state.dataArrived && <BarChart
-            eventsDaily={ state.eventsDaily }
-            statsDaily={ state.statsDaily }
-          />}
+        <Col lg={6}>
+          { state.dataArrived &&
+            <BarChart
+              eventsDaily={ state.eventsDaily }
+              statsDaily={ state.statsDaily }
+            />
+          }
         </Col>
-        <Col lg={5}>
-          {state.dataArrived && <DailyDataTable
-            eventsDaily={ state.eventsDaily }
-            statsDaily={ state.statsDaily }
-          />}
+        <Col lg={6}>
+          { state.dataArrived &&
+            <DailyDataTable
+              eventsDaily={ state.eventsDaily }
+              statsDaily={ state.statsDaily }
+            />
+          }
         </Col>
       </Row>
     </Container>
   )
-}
+};
 
 export default DailyData;

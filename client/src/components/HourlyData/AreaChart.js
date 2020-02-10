@@ -1,22 +1,32 @@
 import React from "react";
-import Buttons from './Buttons';
-import useHideAddData from '../hooks/useHideAddData';
+import Buttons from '../shared/Buttons';
+import useHideAddData from '../../hooks/useHideAddData';
 import { VictoryChart, VictoryAxis, VictoryLabel,
          VictoryGroup, VictoryArea } from 'victory';
+import '../shared/Buttons.css';
 
-function AreaChart(props) {
+/**
+ * AreaChart - creates component to display hourly data on a chart.
+ * @param {object} - an object with data arrays for stats and events.
+ * @return {any} - a React component.
+ */
+const AreaChart = (props) => {
 
-  // sets all variables to true to show initially all data on chart
-  const { showImpressions,
+  // sets all variables to true to show initially all data on chart.
+  let { showImpressions,
           showRevenue,
           showClicks,
           showEvents,
-          hideAddData } = useHideAddData('');
+          hideAddData } =
+    useHideAddData({impressions: true,
+                    revenue: true,
+                    clicks: true,
+                    events: true});
 
   /**
-   * createDataArray - adds data for each hour and makes an object for each hour with added data
-   * @param {array, string} - data array from database and type of data (ie. events)
-   * @return {array} - a data array with an object for each hour and added data
+   * createDataArray - adds data for each hour and makes an object for each hour with added data.
+   * @param {Array, String} - data array from database and type of data (ie. events).
+   * @return {Array} - a data array with an object for each hour and added data.
    */
   const createDataArray = (array, dataType) => {
 
@@ -24,7 +34,7 @@ function AreaChart(props) {
     for (let i = 1; i < 24; i++) {
       finalArray[i - 1] = {};
       finalArray[i - 1].x = i;
-      // creates array of same hour objects
+      // creates array of same hour objects.
       let hourData = array.filter((elem) => {
         return elem.hour === i;
       });
@@ -37,13 +47,13 @@ function AreaChart(props) {
     return finalArray;
   }
 
-  // create arrays of objects for displaying data in charts
+  // create arrays of objects for displaying data in charts.
   let eventsHourlyData = createDataArray(props.eventsHourly, 'events');
   let impressionsHourlyData = createDataArray(props.statsHourly, 'impressions');
   let clicksHourlyData = createDataArray(props.statsHourly, 'clicks');
   let revenueHourlyData = createDataArray(props.statsHourly, 'revenue');
 
-  // constants passed to hideAddData function so we setState to the right state variables
+  // constants passed to hideAddData function so we setState to the right state variables.
   const SHOWIMPRESSIONS = 'showImpressions';
   const SHOWREVENUE = 'showRevenue';
   const SHOWCLICKS = 'showClicks';
@@ -144,6 +154,6 @@ function AreaChart(props) {
       </VictoryChart>
     </main>
   );
-}
+};
 
 export default AreaChart;

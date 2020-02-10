@@ -1,7 +1,12 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 
-export default function Navigation() {
+
+/**
+ * Navigation - defines app routing.
+ * @return {any} - a React component to help navigating the app.
+ */
+const Navigation = () => {
 
   return (
     <Nav variant="tabs">
@@ -16,4 +21,6 @@ export default function Navigation() {
       </Nav.Item>
     </Nav>
   )
-}
+};
+
+export default Navigation;

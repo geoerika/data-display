@@ -1,8 +1,14 @@
 import React from "react";
 import MaterialTable, { MTableToolbar } from "material-table";
 
-function DailyDataTable(props) {
+/**
+ * DailyDataTable - creates component to display daily data in a table.
+ * @param {Object} - props - an object with data arrays fetched from the database.
+ * @return {any} - a React component which displays a table with daily stats and events.
+ */
+const DailyDataTable = (props) => {
 
+  //add event keys and values to the objects in the array of daily stats.
   props.eventsDaily.forEach(elem => {
     for(let i = 0; i <  props.eventsDaily.length; i++) {
       if(props.statsDaily[i].date === elem.date) {
@@ -11,6 +17,8 @@ function DailyDataTable(props) {
     }
   })
 
+
+  //format date and revenue values to display in the data table.
   let dataList = props.statsDaily.map(elem => {
     return {
       ...elem,
@@ -54,6 +62,6 @@ function DailyDataTable(props) {
       />
     </div>
   );
-}
+};
 
 export default DailyDataTable;

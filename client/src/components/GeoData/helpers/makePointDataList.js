@@ -2,40 +2,45 @@ import React from 'react';
 import PointData from '../PointData';
 
 /**
- * pointOfInterestList - creates a list of PointOfInterest
- *                       components to be displayed on a map
- * @param {array} - poi data array from database
- * @return {array} - a data array with location objects
+ * makePointDataList - makes a list of weighted React components for data display.
+ * @param {Array<any>} geoData - array with data for different places from database.
+ * @param {String} dataType - a string equal in value with one of the data types: evnts, clicks...
+ * @return {Array<any>} - a data array with location data to display on the map.
  */
-function makePointDataList(geoData, dataType) {
+const makePointDataList = (geoData, dataType) => {
+
   let scale = 0;
 
+  //set the scale to size data symbols on the map.
   switch(dataType) {
-  case "events":
-    scale=40000;
-    break;
-  case "impressions":
-    scale=700000000;
-    break;
-  case "revenue":
-    scale=2000000;
-    break;
-  case "clicks":
-    scale=500000;
-    break;
-}
+    case "events":
+      scale=40000;
+      break;
+    case "impressions":
+      scale=700000000;
+      break;
+    case "revenue":
+      scale=2000000;
+      break;
+    case "clicks":
+      scale=500000;
+      break;
+    default:
+      break;
+  };
 
+  //create array of React components for each symbol on the mao.
   let pointDataList = geoData.map(location => (
     <PointData
       key={ location.poi_id }
       value={ Number(location[dataType] / scale) }
+      dataType={ dataType }
       lat={ location.lat }
       lng={ location.lon }
       text={ location.name }/>
   ));
 
-  console.log('pointDataList: ', pointDataList);
-
   return pointDataList;
-}
+};
+
 export default makePointDataList;
