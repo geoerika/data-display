@@ -5,31 +5,12 @@ Work Sample for Product Aspect, Node.js Variant
 
 ### Setup and Run
 
-The following are the recommended options, but you're free to use any means to get started.
+#### Local Option Node.js 6.10+
 
-#### Remote Option: Glitch.com
-
-1. [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/EQWorks/ws-product-nodejs)
-2. Populate `.env` file with the environment variables given in the problem set we send to you through email
-3. Click on `Show Live` and you should see `Welcome to EQ Works 😎`
-
-#### Local Option 1: Node.js 6.10+
-
-1. Clone this repository
-2. Install Node.js dependencies `$ npm install`
-3. Set environment variables given in the problem set we send to you through email and run `$ npm run dev`
+1. Clone this repository: `$ git clone git@github.com:geoerika/ws-product-nodejs.git`
+2. Open root directory and install Node.js dependencies: `$ npm install`
+3. I used redis for cache to implement a rate limit functionality, therefore, follow instructions (https://redis.io/topics/quickstart) to set up redis locally and start server with : `redis-server`
+3. Set environment variables given in the problem set and run `$ npm run dev`
 4. Open your browser and point to `localhost:5555` and you should see `Welcome to EQ Works 😎`
-
-#### Local Option 2: Docker (`docker-compose` needed)
-
-1. Clone this repository
-2. Create and populate `.env` file with the environment variables given in the problem set we send to you through email
-3. `$ docker-compose up` (or `$ docker-compose up -d` to run as a daemon)
-4. Open your browser and point to `localhost:5555` and you should see `Welcome to EQ Works 😎`
-
-### Notes on working through the problems
-
-Make sure any additional Node.js level dependencies are properly added in `package.json`. We encourage a healthy mixture of your own implementations, and good choices of existing open-source libraries/tools. We will comment in the problems to indicate which ones cannot be solved purely through an off-the-shelf solution.
-# ws-product-nodejs
-# ws-product-nodejs
-# ws-product-nodejs
+5. Open client directory and insatll dependencies for React front end: `$ npm install`
+6. Open application at `http://localhost:3000/home`
