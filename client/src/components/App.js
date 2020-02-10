@@ -1,14 +1,14 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Navigation from './Navigation';
-import DailyData from './DailyData/DailyData';
-import HourlyData from './HourlyData/HourlyData';
-import GeoData from './GeoData/index';
-import './App.css';
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import Navigation from './Navigation'
+import DailyData from './DailyData/DailyData'
+import HourlyData from './HourlyData/HourlyData'
+import GeoData from './GeoData/index'
+import './App.css'
 
 const App = () => {
 
-return (
+  return (
     <main className="App">
       <Navigation/>
       <Switch>
@@ -17,7 +17,7 @@ return (
         <Route path="/geodata" component={ GeoData }/>
       </Switch>
     </main>
-  );
+  )
 }
 
-export default App;
+export default App

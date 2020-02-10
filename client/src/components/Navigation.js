@@ -1,6 +1,5 @@
-import React from 'react';
-import { Nav } from 'react-bootstrap';
-
+import React from 'react'
+import { Nav } from 'react-bootstrap'
 
 /**
  * Navigation - defines app routing.
@@ -17,10 +16,10 @@ const Navigation = () => {
         <Nav.Link href="/hourlydata">HourlyDataChart</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-       <Nav.Link href="/geodata">GeoMapData</Nav.Link>
+        <Nav.Link href="/geodata">GeoMapData</Nav.Link>
       </Nav.Item>
     </Nav>
   )
-};
+}
 
-export default Navigation;
+export default Navigation

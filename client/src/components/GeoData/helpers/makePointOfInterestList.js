@@ -1,5 +1,5 @@
-import React from 'react';
-import PointOfInterest from '../PointOfInterest';
+import React from 'react'
+import PointOfInterest from '../PointOfInterest'
 
 /**
  * pointOfInterestList - creates a list of PointOfInterest.
@@ -8,17 +8,16 @@ import PointOfInterest from '../PointOfInterest';
  * @return {Array<any>} - a data array with React location components.
  */
 const makePointOfInterestList = (poiCoordinates) => {
-
-  let locationList = poiCoordinates.map(location => (
+  const locationList = poiCoordinates.map(location => (
     <PointOfInterest
       key={ location.poi_id }
       lat={ location.lat }
       lng={ location.lon }
       text={ location.name }
     />
-  ));
+  ))
 
-  return locationList;
-};
+  return locationList
+}
 
-export default makePointOfInterestList;
+export default makePointOfInterestList

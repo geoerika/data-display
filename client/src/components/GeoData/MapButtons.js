@@ -1,6 +1,6 @@
-import React from 'react';
-import { Container, Button, ButtonToolbar } from 'react-bootstrap';
-import './MapButtons.css';
+import React from 'react'
+import { Container, Button, ButtonToolbar } from 'react-bootstrap'
+import './MapButtons.css'
 
 /**
  * MapButtons - creates component to display buttons on the map page.
@@ -9,39 +9,44 @@ import './MapButtons.css';
                    - hide or show data table on the GeoData page.
  * @return {any} - a React component with Bootstrap buttons.
  */
-const MapButtons = (props) => {
-
-  console.log('props in Buttons: ', props);
+const MapButtons = ({
+  showDataTableButton,
+  onClickImpressions,
+  onClickRevenue,
+  onClickClicks,
+  onClickEvents,
+  onClickTable
+}) => {
 
   return (
-    <Container className="buttonContainer align-items-center">
-      <h5 className="title">Click to show data / tabel</h5>
-      <ButtonToolbar className="justify-content-center button align-items-center">
+    <Container className='buttonContainer align-items-center'>
+      <h5 className='title'>Click to show data / tabel</h5>
+      <ButtonToolbar className='justify-content-center button align-items-center'>
         <Button
-          className="button buttonImpressionsMap size='sm' "
-          onClick={props.onClickImpressions}
+          className='button buttonImpressionsMap size="sm"'
+          onClick={onClickImpressions}
         >Impressions</Button>
         <Button
-          className="button buttonRevenueMap size='sm'"
-          onClick={props.onClickRevenue}
+          className='button buttonRevenueMap size="sm"'
+          onClick={onClickRevenue}
         >Revenue</Button>
         <Button
-          className="button buttonClicksMap size='sm'"
-          onClick={props.onClickClicks}
+          className='button buttonClicksMap size="sm"'
+          onClick={onClickClicks}
         >Clicks</Button>
         <Button
-          className="button buttonEventsMap size='sm'"
-          onClick={props.onClickEvents}
+          className='button buttonEventsMap size="sm"'
+          onClick={onClickEvents}
         >Events</Button>
-        { props.showDataTableButton &&
+        { showDataTableButton &&
           <Button
-            className="button buttonMapTable size='sm'"
-            onClick={props.onClickTable}
+            className='button buttonMapTable size="sm"'
+            onClick={onClickTable}
           >Data Table</Button>
         }
       </ButtonToolbar>
     </Container>
   )
-};
+}
 
-export default MapButtons;
+export default MapButtons

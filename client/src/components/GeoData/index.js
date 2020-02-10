@@ -1,68 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import axiosGet from '../shared/getData';
-import { Container, Row, Col } from 'react-bootstrap';
-import MapButtons from './MapButtons';
-import GeoDataTable from './GeoDataTable';
-import GeoDataMap from './GeoDataMap';
-import useHideAddData from '../../hooks/useHideAddData';
-import './index.css';
-import './MapButtons.css';
+import React, { useState, useEffect } from 'react'
+import axiosGet from '../shared/getData'
+import { Container, Row, Col } from 'react-bootstrap'
+import MapButtons from './MapButtons'
+import GeoDataTable from './GeoDataTable'
+import GeoDataMap from './GeoDataMap'
+import useHideAddData from '../../hooks/useHideAddData'
+import './index.css'
+import './MapButtons.css'
 
 /**
  * GeoData - functional React component which displays buttons, table, and map on a page.
  * @return {any} - React component.
  */
 const GeoData = () => {
-
-  const URL = process.env.REACT_APP_API_ENDPOINT;
+  const URL = process.env.REACT_APP_API_ENDPOINT
 
   const [state, setState] = useState({
     poi: [],
     dataArrived: false
-  });
+  })
 
-  //get data
+  // get data
   useEffect(() => {
-      Promise.resolve(
-        axiosGet(`${URL}/poi`)
-      )
-      .then(response => {
-        setState(prev => ({
-          ...state,
-          poiData: response.data,
-          dataArrived: true
-        }));
-      });
-  }, []);
+    Promise.resolve(
+      axiosGet(`${URL}/poi`)
+    ).then(response => {
+      setState(prev => ({
+        ...state,
+        poiData: response.data,
+        dataArrived: true
+      }))
+    })
+  }, [])
 
-console.log('state: ', state);
-
-  //we set and retrieve updated values here
-  let { showImpressions,
-          showRevenue,
-          showClicks,
-          showEvents,
-          showLocations,
-          showDataTable,
-          hideAddData,
-          selectDataOnMap } =
-    useHideAddData({impressions: false,
-                    revenue: false,
-                    clicks: false,
-                    events: false,
-                    locations: true});
-
-  console.log('selectDataOnMap: ', selectDataOnMap);
+  // we set and retrieve updated values here
+  const {
+    showImpressions,
+    showRevenue,
+    showClicks,
+    showEvents,
+    showLocations,
+    showDataTable,
+    hideAddData,
+    selectDataOnMap
+  } =
+    useHideAddData({
+      impressions: false,
+      revenue: false,
+      clicks: false,
+      events: false,
+      locations: true
+    })
 
   // tell Buttons to show DataTable button.
-  let showDataTableButton = true;
+  const showDataTableButton = true
 
-  //constants used to show different data on the map.
-  const SHOWIMPRESSIONS = 'showImpressions';
-  const SHOWREVENUE = 'showRevenue';
-  const SHOWCLICKS = 'showClicks';
-  const SHOWEVENTS = 'showEvents';
-  const SHOWDATATABLE = 'showDataTable';
+  // constants used to show different data on the map.
+  const SHOWIMPRESSIONS = 'showImpressions'
+  const SHOWREVENUE = 'showRevenue'
+  const SHOWCLICKS = 'showClicks'
+  const SHOWEVENTS = 'showEvents'
+  const SHOWDATATABLE = 'showDataTable'
 
   return (
     <Container>
@@ -73,8 +71,8 @@ console.log('state: ', state);
             onClickImpressions={ () => selectDataOnMap(SHOWIMPRESSIONS) }
             onClickRevenue={ () => selectDataOnMap(SHOWREVENUE) }
             onClickClicks={ () => selectDataOnMap(SHOWCLICKS) }
-            onClickEvents={ () => selectDataOnMap(SHOWEVENTS)  }
-            onClickTable={ () => hideAddData(SHOWDATATABLE)  }
+            onClickEvents={ () => selectDataOnMap(SHOWEVENTS) }
+            onClickTable={ () => hideAddData(SHOWDATATABLE) }
           />
         </Col>
         <Col>
@@ -98,6 +96,6 @@ console.log('state: ', state);
       </Row>
     </Container>
   )
-};
+}
 
-export default GeoData;
+export default GeoData

@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import axiosGet from '../shared/getData';
-import { Container, Row, Col } from 'react-bootstrap';
-import AreaChart from './AreaChart';
-import HourlyDataTable from './HourlyDataTable';
+import React, { useState, useEffect } from 'react'
+import axiosGet from '../shared/getData'
+import { Container, Row, Col } from 'react-bootstrap'
+import AreaChart from './AreaChart'
+import HourlyDataTable from './HourlyDataTable'
 
 /**
  * HourlyData - fetches hourly data from database and
  *              returns a React component displaying hourly data.
  * @return {Promise<any>} - a React component whcih contains a chart, table, and buttons.
  */
-const HourlyData = (props) => {
-
-  const URL = process.env.REACT_APP_API_ENDPOINT;
+const HourlyData = () => {
+  const URL = process.env.REACT_APP_API_ENDPOINT
 
   const [state, setState] = useState({
     eventsHourly: [],
     statsHourly: [],
     dataArrived: false
-  });
+  })
 
-  //hook to fetch data from database and set state.
+  // hook to fetch data from database and set state.
   useEffect(() => {
     Promise.all([
       Promise.resolve(
@@ -29,16 +28,13 @@ const HourlyData = (props) => {
         axiosGet(`${URL}/stats/hourly`)
       )
     ]).then((all) => {
-        console.log('all in HourlyData: ', all);
-        setState(prev => ({
-          eventsHourly: all[0].data,
-          statsHourly: all[1].data,
-          dataArrived: true
-        }));
+      setState(prev => ({
+        eventsHourly: all[0].data,
+        statsHourly: all[1].data,
+        dataArrived: true
+      }))
     })
-  }, []);
-
-  console.log('state in Hourly Data: ', state);
+  }, [URL])
 
   return (
     <Container>
@@ -62,6 +58,6 @@ const HourlyData = (props) => {
       </Row>
     </Container>
   )
-};
+}
 
-export default HourlyData;
+export default HourlyData
