@@ -35,8 +35,10 @@ const HourlyData = (props) => {
           statsHourly: all[1].data,
           dataArrived: true
         }));
-    });
+    })
   }, []);
+
+  console.log('state in Hourly Data: ', state);
 
   return (
     <Container>
