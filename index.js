@@ -1,24 +1,26 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+const express = require('express')
+const cors = require('cors')
+const bodyParser = require('body-parser')
 const pg = require('pg')
-const ENV = require("./environment");
-const path = require("path");
-const PATH = path.resolve(__dirname, ".env." + ENV);
-// const rateLimiter = require('./rateLimiter');
+const ENV = require('./environment')
+const path = require('path')
+const PATH = path.resolve(__dirname, '.env.' + ENV)
+const rateLimiter = require('./rateLimiter')
 
-require("dotenv").config({ path: PATH });
+require('dotenv').config({ path: PATH })
 
-const app = express();
+const app = express()
 
-// const name = 'erika';
+// we use this variable to identify user for rateLimiter middlware
+const name = 'erika'
 
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-// app.use(rateLimiter({name}));
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(rateLimiter({ name }))
+
 // configs come from standard PostgreSQL env vars
-const pool = new pg.Pool();
+const pool = new pg.Pool()
 
 const queryHandler = (req, res, next) => {
   pool.query(req.sqlQuery).then((r) => {
