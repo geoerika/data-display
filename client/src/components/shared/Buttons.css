@@ -2,112 +2,112 @@
   margin-top: 1rem;
 }
 
-.bar-chart .button .buttonImpressions {
+.button .buttonEvents {
   background-color: #940031;
   color: white;
   border-color: #940031;
   margin: 5px;
 }
 
-.bar-chart .button .buttonImpressions:hover {
+.button .buttonEvents:hover {
   background-color: #940031 !important;
   border-color: #940031;
   outline: none;
   box-shadow: none !important;
 }
 
-.bar-chart .button .buttonImpressions:focus {
+.button .buttonEvents:focus {
   background-color: #940031 !important;
   border-color: #940031;
   outline: none;
   box-shadow: none !important;
 }
 
-.bar-chart .button .buttonImpressions:active {
+.button .buttonEvents:active {
   background-color: #940031 !important;
   border-color: #940031;
   outline: none;
   box-shadow: none !important;
 }
 
-.bar-chart .button .buttonRevenue {
+.button .buttonClicks {
   background-color: #C43343;
   color: white;
   border-color: #C43343;
   margin: 5px;
 }
 
-.bar-chart .button .buttonRevenue:hover {
+.button .buttonClicks:hover {
   background-color: #C43343 !important;
   border-color: #C43343;
   outline: none;
   box-shadow: none !important;
 }
 
-.bar-chart .button .buttonRevenue:focus {
+.button .buttonClicks:focus {
   background-color: #C43343 !important;
   border-color: #C43343;
   outline: none;
   box-shadow: none !important;
 }
 
-.bar-chart .button .buttonRevenue:active {
+.button .buttonClicks:active {
   background-color: #C43343 !important;
   border-color: #C43343;
   outline: none;
   box-shadow: none !important;
 }
 
-.bar-chart .button .buttonClicks {
+.button .buttonRevenue {
   background-color: #DC5429;
   color: white;
   border-color: #DC5429;
   margin: 5px;
 }
 
-.bar-chart .button .buttonClicks:hover {
+.button .buttonRevenue:hover {
   background-color: #DC5429 !important;
   border-color: #DC5429;
   outline: none;
   box-shadow: none !important;
 }
 
-.bar-chart .button .buttonClicks:focus {
+.button .buttonRevenue:focus {
   background-color: #DC5429 !important;
   border-color: #DC5429;
   outline: none;
   box-shadow: none !important;
 }
 
-.bar-chart .button .buttonClicks:active {
+.button .buttonRevenue:active {
   background-color: #DC5429 !important;
   border-color: #DC5429;
   outline: none;
   box-shadow: none !important;
 }
 
-.bar-chart .button .buttonEvents {
+.button .buttonImpressions {
   background-color: #FF821D;
   color: white;
   border-color: #FF821D;
   margin: 5px;
 }
 
-.bar-chart .button .buttonEvents:hover {
+.button .buttonImpressions:hover {
   background-color: #FF821D !important;
   border-color: #FF821D;
   outline: none;
   box-shadow: none !important;
 }
 
-.bar-chart .button .buttonEvents:focus {
+.button .buttonImpressions:focus {
   background-color: #FF821D !important;
   border-color: #FF821D;
   outline: none;
   box-shadow: none !important;
 }
 
-.bar-chart .button .buttonEvents:active {
+.button .buttonImpressions:active {
   background-color: #FF821D !important;
   border-color: #FF821D;
   outline: none;

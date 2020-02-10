@@ -5,17 +5,19 @@ const pg = require('pg')
 const ENV = require("./environment");
 const path = require("path");
 const PATH = path.resolve(__dirname, ".env." + ENV);
+const rateLimiter = require('./rateLimiter');
 
 require("dotenv").config({ path: PATH });
 
-
 const app = express();
+
+const userRequests = [];
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(rateLimiter({userRequests}));
 // configs come from standard PostgreSQL env vars
-// https://www.postgresql.org/docs/9.6/static/libpq-envars.html
 const pool = new pg.Pool();
 
 const queryHandler = (req, res, next) => {
@@ -43,7 +45,7 @@ app.get('/events/daily', (req, res, next) => {
     SELECT date, SUM(events) AS events
     FROM public.hourly_events
     GROUP BY date
-    ORDER BY date, hour
+    ORDER BY date
     LIMIT 7;
   `
   return next()
@@ -75,8 +77,18 @@ app.get('/stats/daily', (req, res, next) => {
 
 app.get('/poi', (req, res, next) => {
   req.sqlQuery = `
-    SELECT *
-    FROM public.poi;
+    SELECT  p.poi_id, p.name, p.lat, p.lon,
+            SUM(impressions) AS impressions,
+            SUM(clicks) AS clicks,
+            SUM(revenue) AS revenue,
+            SUM(events) AS events
+    FROM public.poi p
+    INNER JOIN public.hourly_stats s
+    ON p.poi_id = s.poi_id
+    INNER JOIN public.hourly_events e
+    ON s.poi_id = e.Poi_id
+    GROUP BY p.poi_id, p.name, p.lat, p.lon
+    ORDER By SUM(revenue) DESC;
   `
   return next()
 }, queryHandler)
