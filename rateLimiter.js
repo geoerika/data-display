@@ -20,16 +20,17 @@ module.exports = (options) => {
     // conflict when two requests arrive in the same time
     client
       .multi()
-      // sets counter value for user to 0 and expires it in 60 sec
+      // sets request counter value for user to 0 and expires it in 60 sec
       .set([USER, 0, 'EX', 60, 'NX'])
       // we increment counter
-      .incr(USER) // INCR UUID
+      .incr(USER)
       .exec((err, response) => {
         if (err) {
           return res.status(500).send(err.message)
         }
-        const reqestCounter = response[1]
-        if (reqestCounter > 20) {
+        // we read the response value of the nr of requests
+        const requestCounter = response[1]
+        if (requestCounter > 20) {
           return res.status(429)
             .send('You exceeded your quota of requests per minute! Please try again later!')
         }
