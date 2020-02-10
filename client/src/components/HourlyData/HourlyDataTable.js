@@ -63,8 +63,8 @@ const HourlyDataTable = (props) => {
         components={{
           Toolbar: props => (
             <div style =
-              {{ color: "mediumslateblue",
-                  backgroundColor: '#940031',
+              {{ color: "#940031",
+                  backgroundColor: '#e8eaf5',
                   fontWeight: 'bold'
               }}
             >
