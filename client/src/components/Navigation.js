@@ -8,15 +8,18 @@ import { Nav } from 'react-bootstrap'
 const Navigation = () => {
 
   return (
-    <Nav variant="tabs">
-      <Nav.Item>
-        <Nav.Link href="/dailydata">DailyDataChart</Nav.Link>
+    <Nav variant='tabs'>
+    <Nav.Item>
+        <Nav.Link href='/home'>Home</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/hourlydata">HourlyDataChart</Nav.Link>
+        <Nav.Link href='/dailydata'>DailyDataChart</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/geodata">GeoMapData</Nav.Link>
+        <Nav.Link href='/hourlydata'>HourlyDataChart</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href='/geodata'>GeoMapData</Nav.Link>
       </Nav.Item>
     </Nav>
   )
