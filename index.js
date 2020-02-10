@@ -11,7 +11,7 @@ require('dotenv').config({ path: PATH })
 
 const app = express()
 
-// we use this variable to identify user for rateLimiter middlware
+// we use this variable to identify user for rateLimiter middleware
 const name = 'erika'
 
 app.use(cors())

@@ -18,8 +18,6 @@ const useHideAddData = (initialState, elem) => {
     showDataTable: false
   })
 
-  console.log('state in hook: ', state)
-
   /**
    * hideAddData - resets the values of state variables.
    * @param {string} elem - a string equal in value to one of the state keys.
