@@ -67,7 +67,7 @@ const GeoData = () => {
       <Row className='bttn-table'>
         <Col>
           <MapButtons
-            showDataTableButton={showDataTableButton}
+            showDataTableButton={ showDataTableButton }
             onClickImpressions={ () => selectDataOnMap(SHOWIMPRESSIONS) }
             onClickRevenue={ () => selectDataOnMap(SHOWREVENUE) }
             onClickClicks={ () => selectDataOnMap(SHOWCLICKS) }
@@ -77,7 +77,7 @@ const GeoData = () => {
         </Col>
         <Col>
           { showDataTable &&
-            <GeoDataTable poiData={state.poiData}/>
+            <GeoDataTable poiData={ state.poiData }/>
           }
         </Col>
       </Row>
