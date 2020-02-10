@@ -54,7 +54,7 @@ export default function BarChart ({ eventsDaily, statsDaily }) {
   const eventsDailyData = formatBarChartData(eventsDaily, 'events')
   const impressionsDailyData = formatBarChartData(statsDaily, 'impressions')
   const clicksDailyData = formatBarChartData(statsDaily, 'clicks')
-  const revenueDailyData = formatBarChartData(statsDaily, 'impressions')
+  const revenueDailyData = formatBarChartData(statsDaily, 'revenue')
 
   return (
     <div>
