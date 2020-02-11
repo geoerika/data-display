@@ -22,10 +22,10 @@ const HourlyData = () => {
   useEffect(() => {
     Promise.all([
       Promise.resolve(
-        axiosGet(`${URL}/events/hourly`)
+        axiosGet(`${URL}/api/events/hourly`)
       ),
       Promise.resolve(
-        axiosGet(`${URL}/stats/hourly`)
+        axiosGet(`${URL}/api/stats/hourly`)
       )
     ]).then((all) => {
       setState(prev => ({

@@ -31,11 +31,11 @@ const queryHandler = (req, res, next) => {
   }).catch(next)
 }
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('Welcome to EQ Works 😎')
 })
 
-app.get('/events/hourly', (req, res, next) => {
+app.get('/api/events/hourly', (req, res, next) => {
   req.sqlQuery = `
     SELECT date, hour, events
     FROM public.hourly_events
@@ -45,7 +45,7 @@ app.get('/events/hourly', (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/events/daily', (req, res, next) => {
+app.get('/api/events/daily', (req, res, next) => {
   req.sqlQuery = `
     SELECT date, SUM(events) AS events
     FROM public.hourly_events
@@ -56,7 +56,7 @@ app.get('/events/daily', (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/stats/hourly', (req, res, next) => {
+app.get('/api/stats/hourly', (req, res, next) => {
   req.sqlQuery = `
     SELECT date, hour, impressions, clicks, revenue
     FROM public.hourly_stats
@@ -66,7 +66,7 @@ app.get('/stats/hourly', (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/stats/daily', (req, res, next) => {
+app.get('/api/stats/daily', (req, res, next) => {
   req.sqlQuery = `
     SELECT date,
         SUM(impressions) AS impressions,
@@ -80,7 +80,7 @@ app.get('/stats/daily', (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/poi', (req, res, next) => {
+app.get('/api/poi', (req, res, next) => {
   req.sqlQuery = `
     SELECT *
     FROM public.poi;
@@ -89,7 +89,7 @@ app.get('/poi', (req, res, next) => {
 }, queryHandler)
 
 if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use(express.static('/client/build'));
   app.get('*', (req,res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
