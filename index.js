@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 5555;
 const app = express()
 
 // we use this variable to identify user for rateLimiter middleware
+// when app uses authentiation it should be replaced for ex. with user name
 const name = 'erika'
 
 app.use(cors())
@@ -81,35 +82,18 @@ app.get('/stats/daily', (req, res, next) => {
 
 app.get('/poi', (req, res, next) => {
   req.sqlQuery = `
-    SELECT  p.poi_id, p.name, p.lat, p.lon,
-            SUM(impressions) AS impressions,
-            SUM(clicks) AS clicks,
-            SUM(revenue) AS revenue,
-            SUM(events) AS events
-    FROM public.poi p
-    INNER JOIN public.hourly_stats s
-    ON p.poi_id = s.poi_id
-    INNER JOIN public.hourly_events e
-    ON s.poi_id = e.Poi_id
-    GROUP BY p.poi_id, p.name, p.lat, p.lon
-    ORDER By SUM(revenue) DESC;
+    SELECT *
+    FROM public.poi;
   `
   return next()
 }, queryHandler)
 
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-  app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-  });
-}
-
-app.listen(PORT, (err) => {
+app.listen(process.env.PORT || 5555, (err) => {
   if (err) {
     console.error(err)
     process.exit(1)
   } else {
-    console.log(`Running on ${PORT}`)
+    console.log(`Running on ${process.env.PORT || 5555}`)
   }
 })
 
