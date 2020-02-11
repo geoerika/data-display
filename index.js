@@ -20,7 +20,7 @@ const name = 'erika'
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-// app.use(rateLimiter({ name }))
+app.use(rateLimiter({ name }))
 
 // configs come from standard PostgreSQL env vars
 const pool = new pg.Pool()
@@ -87,6 +87,13 @@ app.get('/poi', (req, res, next) => {
   `
   return next()
 }, queryHandler)
+
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 app.listen(process.env.PORT || 5555, (err) => {
   if (err) {
