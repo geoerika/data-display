@@ -23,12 +23,16 @@ app.use(bodyParser.json())
 const pool = new pg.Pool()
 
 const queryHandler = (req, res, next) => {
-  pool.query(req.sqlQuery).then((r) => {
+  pool.query(req.sqlQuery).then((error, r) => {
+    if (err) {
+      throw err
+    }
+    console.log('database response: ', res.json(r.rows || []));
     return res.json(r.rows || [])
   }).catch(next)
 }
 
-// app.get('/api', (req, res) => {
+// app.get('/', (req, res) => {
 //   res.send('Welcome to EQ Works 😎')
 // })
 

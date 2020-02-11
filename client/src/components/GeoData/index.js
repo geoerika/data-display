@@ -25,6 +25,7 @@ const GeoData = () => {
     Promise.resolve(
       axiosGet(`${URL}/poi`)
     ).then(response => {
+      console.log('response in Map: ', response);
       setState(prev => ({
         ...state,
         poiData: response.data,
