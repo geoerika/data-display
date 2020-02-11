@@ -9,12 +9,9 @@ const PATH = path.resolve(__dirname, '.env.' + ENV)
 
 require('dotenv').config({ path: PATH })
 
-const PORT = process.env.PORT || 5555;
-
 const app = express()
 
 // we use this variable to identify user for rateLimiter middleware
-// when app uses authentiation it should be replaced for ex. with user name
 const name = 'erika'
 
 app.use(cors())
@@ -31,11 +28,11 @@ const queryHandler = (req, res, next) => {
   }).catch(next)
 }
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Welcome to EQ Works 😎')
 })
 
-app.get('/api/events/hourly', (req, res, next) => {
+app.get('/events/hourly', (req, res, next) => {
   req.sqlQuery = `
     SELECT date, hour, events
     FROM public.hourly_events
@@ -45,7 +42,7 @@ app.get('/api/events/hourly', (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/api/events/daily', (req, res, next) => {
+app.get('/events/daily', (req, res, next) => {
   req.sqlQuery = `
     SELECT date, SUM(events) AS events
     FROM public.hourly_events
@@ -56,7 +53,7 @@ app.get('/api/events/daily', (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/api/stats/hourly', (req, res, next) => {
+app.get('/stats/hourly', (req, res, next) => {
   req.sqlQuery = `
     SELECT date, hour, impressions, clicks, revenue
     FROM public.hourly_stats
@@ -66,7 +63,7 @@ app.get('/api/stats/hourly', (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/api/stats/daily', (req, res, next) => {
+app.get('/stats/daily', (req, res, next) => {
   req.sqlQuery = `
     SELECT date,
         SUM(impressions) AS impressions,
@@ -80,19 +77,29 @@ app.get('/api/stats/daily', (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/api/poi', (req, res, next) => {
+app.get('/poi', (req, res, next) => {
   req.sqlQuery = `
-    SELECT *
-    FROM public.poi;
+    SELECT  p.poi_id, p.name, p.lat, p.lon,
+            SUM(impressions) AS impressions,
+            SUM(clicks) AS clicks,
+            SUM(revenue) AS revenue,
+            SUM(events) AS events
+    FROM public.poi p
+    INNER JOIN public.hourly_stats s
+    ON p.poi_id = s.poi_id
+    INNER JOIN public.hourly_events e
+    ON s.poi_id = e.Poi_id
+    GROUP BY p.poi_id, p.name, p.lat, p.lon
+    ORDER By SUM(revenue) DESC;
   `
   return next()
 }, queryHandler)
 
 if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('/client/build'));
+  app.use(express.static('client/build'))
   app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-  });
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+  })
 }
 
 app.listen(process.env.PORT || 5555, (err) => {
