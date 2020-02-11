@@ -20,7 +20,7 @@ const name = 'erika'
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(rateLimiter({ name }))
+// app.use(rateLimiter({ name }))
 
 // configs come from standard PostgreSQL env vars
 const pool = new pg.Pool()
