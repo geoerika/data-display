@@ -21,10 +21,10 @@ const DailyData = () => {
   useEffect(() => {
     Promise.all([
       Promise.resolve(
-        axiosGet(`${URL}/api/events/daily`)
+        axiosGet(`${URL}/events/daily`)
       ),
       Promise.resolve(
-        axiosGet(`${URL}/api/stats/daily`)
+        axiosGet(`${URL}/stats/daily`)
       )
     ])
       .then((all) => {

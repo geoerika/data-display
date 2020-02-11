@@ -28,9 +28,9 @@ const queryHandler = (req, res, next) => {
   }).catch(next)
 }
 
-app.get('/', (req, res) => {
-  res.send('Welcome to EQ Works 😎')
-})
+// app.get('/api', (req, res) => {
+//   res.send('Welcome to EQ Works 😎')
+// })
 
 app.get('/events/hourly', (req, res, next) => {
   req.sqlQuery = `

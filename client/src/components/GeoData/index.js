@@ -23,7 +23,7 @@ const GeoData = () => {
   // get data
   useEffect(() => {
     Promise.resolve(
-      axiosGet(`${URL}/api/poi`)
+      axiosGet(`${URL}/poi`)
     ).then(response => {
       setState(prev => ({
         ...state,
