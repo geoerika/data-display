@@ -1,5 +1,4 @@
 const redis = require('redis')
-const config = require('./config/dev');
 // const ENV = require('./environment')
 // const path = require('path')
 // const PATH = path.resolve(__dirname, '.env.' + ENV)
@@ -7,10 +6,7 @@ module.exports = (options) => {
   return function (req, res, next) {
     // variable to identify user
     const USER = options.name
-    const client = redis.createClient({
-      port: config.REDISPORT,
-      host: config.REDISHOST
-    })
+    const client = redis.createClient(process.env.REDIS_URL)
 
     client.on('ready', function () {
       console.log('Redis is ready')
