@@ -13,10 +13,10 @@ const App = () => {
     <main className='App'>
       <Navigation/>
       <Switch>
-        <Route path='/home' component={ Home }/>
         <Route path='/dailydata' component={ DailyData }/>
         <Route path='/hourlydata' component={ HourlyData }/>
         <Route path='/geodata' component={ GeoData }/>
+        <Route path='/' component={ Home }/>
       </Switch>
     </main>
   )

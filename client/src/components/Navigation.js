@@ -9,8 +9,8 @@ const Navigation = () => {
 
   return (
     <Nav variant='tabs'>
-    <Nav.Item>
-        <Nav.Link href='/home'>Home</Nav.Link>
+      <Nav.Item>
+        <Nav.Link href='/'>Home</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link href='/dailydata'>DailyDataChart</Nav.Link>
