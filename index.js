@@ -5,9 +5,11 @@ const pg = require('pg')
 const ENV = require('./environment')
 const path = require('path')
 const PATH = path.resolve(__dirname, '.env.' + ENV)
-const rateLimiter = require('./rateLimiter')
+// const rateLimiter = require('./rateLimiter')
 
 require('dotenv').config({ path: PATH })
+
+const PORT = process.env.PORT || 5555;
 
 const app = express()
 
@@ -17,7 +19,7 @@ const name = 'erika'
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(rateLimiter({ name }))
+// app.use(rateLimiter({ name }))
 
 // configs come from standard PostgreSQL env vars
 const pool = new pg.Pool()
@@ -95,12 +97,19 @@ app.get('/poi', (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.listen(process.env.PORT || 5555, (err) => {
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
+app.listen(PORT, (err) => {
   if (err) {
     console.error(err)
     process.exit(1)
   } else {
-    console.log(`Running on ${process.env.PORT || 5555}`)
+    console.log(`Running on ${PORT}`)
   }
 })
 
