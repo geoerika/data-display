@@ -10,7 +10,7 @@ module.exports = (options) => {
     })
 
     client.on('error', function () {
-      console.log('Error in Redis')
+      console.log('Error in Redis: ', error)
     })
 
     // start multi transactions for one request so we avoid
@@ -18,7 +18,7 @@ module.exports = (options) => {
     client
       .multi()
       // sets request counter value for user to 0 and expires it in 60 sec
-      .set([USER, 0, 'EX', 60, 'NX'])
+      .set([USER, 0, 'EX', 2, 'NX'])
       // we increment counter for user
       .incr(USER)
       .exec((err, response) => {
