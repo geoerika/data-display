@@ -1,4 +1,3 @@
-
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -32,6 +31,9 @@ app.use(rateLimiter({ name }))
 const pool = new pg.Pool({ connectionString:process.env.DATABASE_URL })
 
 const queryHandler = (req, res, next) => {
+
+  // tried to clean up connections after their use
+  // to see if it impacts on the heroku app problem
   pool.connect()
   .then( client => {
     return client
