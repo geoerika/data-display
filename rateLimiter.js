@@ -31,7 +31,7 @@ module.exports = (options) => {
         }
         // we read the response value of the nr of requests
         const requestCounter = response[1]
-        if (requestCounter > 20) {
+        if (requestCounter > 30) {
           return res.status(429)
             .send('You exceeded your quota of requests per minute! Please try again later!')
         }
