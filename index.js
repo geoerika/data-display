@@ -1,3 +1,4 @@
+
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -5,6 +6,7 @@ const pg = require('pg')
 const ENV = require('./environment')
 const path = require('path')
 const PATH = path.resolve(__dirname, '.env.' + ENV)
+const config = require('./config/dev');
 // const rateLimiter = require('./rateLimiter')
 
 require('dotenv').config({ path: PATH })
@@ -20,21 +22,18 @@ app.use(bodyParser.json())
 // app.use(rateLimiter({ name }))
 
 // configs come from standard PostgreSQL env vars
-const pool = new pg.Pool()
+// const pool = new pg.Pool()
+const pool = new pg.Pool({connectionString: config.DATABASE_URL})
 
 const queryHandler = (req, res, next) => {
-  pool.query(req.sqlQuery).then((error, r) => {
-    if (err) {
-      throw err
-    }
-    console.log('database response: ', res.json(r.rows || []));
+  pool.query(req.sqlQuery).then((r) => {
     return res.json(r.rows || [])
   }).catch(next)
 }
 
-// app.get('/', (req, res) => {
-//   res.send('Welcome to EQ Works 😎')
-// })
+app.get('/', (req, res) => {
+  res.send('Welcome to EQ Works 😎')
+})
 
 app.get('/events/hourly', (req, res, next) => {
   req.sqlQuery = `
