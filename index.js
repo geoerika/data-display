@@ -6,7 +6,6 @@ const pg = require('pg')
 const ENV = require('./environment')
 const path = require('path')
 const PATH = path.resolve(__dirname, '.env.' + ENV)
-const config = require('./config/dev');
 // const rateLimiter = require('./rateLimiter')
 
 require('dotenv').config({ path: PATH })
