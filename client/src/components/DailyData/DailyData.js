@@ -35,8 +35,12 @@ const DailyData = () => {
           dataArrived: true
         }))
       })
+      .catch((error) => {
+        console.log(error.response.status)
+        console.log(error.response.headers)
+        console.log('error in DailyData: ', error.response.data)
+      })
   }, [URL])
-
   return (
     <Container>
       <Row>

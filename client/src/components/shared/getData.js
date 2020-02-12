@@ -8,9 +8,9 @@ import axios from 'axios'
 export default function axiosGet (url) {
   return axios
           .get(url)
-          .catch((error) => {
-            console.log(error.response.status)
-            console.log(error.response.headers)
-            console.log(error.response.data)
-          })
+          // .catch((error) => {
+          //   console.log(error.response.status)
+          //   console.log(error.response.headers)
+          //   console.log('error in axios: ', error.response.data)
+          // })
 }
