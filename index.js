@@ -23,7 +23,10 @@ app.use(bodyParser.json())
 
 // configs come from standard PostgreSQL env vars
 // const pool = new pg.Pool()
-const pool = new pg.Pool({connectionString: config.DATABASE_URL})
+const pool = new pg.Pool({connectionString:
+                          ( process.env.DATABASE_URL ||
+                            config.DATABASE_URL )
+                        })
 
 const queryHandler = (req, res, next) => {
   pool.query(req.sqlQuery).then((r) => {
