@@ -3,6 +3,7 @@ import axiosGet from '../shared/getData'
 import { Container, Row, Col } from 'react-bootstrap'
 import AreaChart from './AreaChart'
 import HourlyDataTable from './HourlyDataTable'
+import Error from '../shared/Error'
 
 /**
  * HourlyData - fetches hourly data from database and
@@ -15,7 +16,8 @@ const HourlyData = () => {
   const [state, setState] = useState({
     eventsHourly: [],
     statsHourly: [],
-    dataArrived: false
+    dataArrived: false,
+    errorMessage: ''
   })
 
   // hook to fetch data from database and set state.
@@ -34,14 +36,23 @@ const HourlyData = () => {
         statsHourly: all[1].data,
         dataArrived: true
       }))
-    })
+    }).catch((error) => {
+        setState((prev) => ({ ...prev, errorMessage: error.response.data }))
+        console.log(error.response.status)
+        console.log(error.response.headers)
+        console.log(error.response.data)
+      })
   }, [URL])
 
   return (
     <Container>
+      { state.errorMessage &&
+        <Error errorMessage= { state.errorMessage }/>
+      }
       <Row>
         <Col lg={6}>
           { state.dataArrived &&
+            !state.errorMessage &&
             <AreaChart
               eventsHourly={ state.eventsHourly }
               statsHourly={ state.statsHourly }
@@ -50,6 +61,7 @@ const HourlyData = () => {
         </Col>
         <Col lg={6}>
           { state.dataArrived &&
+            !state.errorMessage &&
             <HourlyDataTable
               eventsHourly={ state.eventsHourly }
               statsHourly={ state.statsHourly }

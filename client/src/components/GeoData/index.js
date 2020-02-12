@@ -5,6 +5,7 @@ import MapButtons from './MapButtons'
 import GeoDataTable from './GeoDataTable'
 import GeoDataMap from './GeoDataMap'
 import useHideAddData from '../../hooks/useHideAddData'
+import Error from '../shared/Error'
 import './index.css'
 import './MapButtons.css'
 
@@ -17,7 +18,8 @@ const GeoData = () => {
 
   const [state, setState] = useState({
     poi: [],
-    dataArrived: false
+    dataArrived: false,
+    errorMessage: ''
   })
 
   // get data
@@ -31,7 +33,12 @@ const GeoData = () => {
         poiData: response.data,
         dataArrived: true
       }))
-    })
+    }).catch((error) => {
+        setState((prev) => ({ ...prev, errorMessage: error.response.data }))
+        console.log(error.response.status)
+        console.log(error.response.headers)
+        console.log(error.response.data)
+      })
   }, [])
 
   // we set and retrieve updated values here
@@ -65,25 +72,32 @@ const GeoData = () => {
 
   return (
     <Container>
-      <Row className='bttn-table'>
-        <Col>
-          <MapButtons
-            showDataTableButton={ showDataTableButton }
-            onClickImpressions={ () => selectDataOnMap(SHOWIMPRESSIONS) }
-            onClickRevenue={ () => selectDataOnMap(SHOWREVENUE) }
-            onClickClicks={ () => selectDataOnMap(SHOWCLICKS) }
-            onClickEvents={ () => selectDataOnMap(SHOWEVENTS) }
-            onClickTable={ () => hideAddData(SHOWDATATABLE) }
-          />
-        </Col>
-        <Col>
-          { showDataTable &&
-            <GeoDataTable poiData={ state.poiData }/>
-          }
-        </Col>
-      </Row>
+      { state.errorMessage &&
+        <Error errorMessage= { state.errorMessage }/>
+      }
+      { state.dataArrived &&
+        !state.errorMessage &&
+        <Row className='bttn-table'>
+          <Col>
+            <MapButtons
+              showDataTableButton={ showDataTableButton }
+              onClickImpressions={ () => selectDataOnMap(SHOWIMPRESSIONS) }
+              onClickRevenue={ () => selectDataOnMap(SHOWREVENUE) }
+              onClickClicks={ () => selectDataOnMap(SHOWCLICKS) }
+              onClickEvents={ () => selectDataOnMap(SHOWEVENTS) }
+              onClickTable={ () => hideAddData(SHOWDATATABLE) }
+            />
+          </Col>
+          <Col>
+            { showDataTable &&
+              <GeoDataTable poiData={ state.poiData }/>
+            }
+          </Col>
+        </Row>
+      }
       <Row>
         { state.dataArrived &&
+          !state.errorMessage &&
           <GeoDataMap
             poiData={ state.poiData }
             /* initially the map shows only locations. */

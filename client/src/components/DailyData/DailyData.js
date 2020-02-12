@@ -3,6 +3,7 @@ import axiosGet from '../shared/getData'
 import { Container, Row, Col } from 'react-bootstrap'
 import BarChart from './BarChart'
 import DailyDataTable from './DailyDataTable'
+import Error from '../shared/Error'
 
 /**
  * DailyData - fetches daily data from database and returns a React component showing daily data.
@@ -14,7 +15,8 @@ const DailyData = () => {
   const [state, setState] = useState({
     eventsDaily: [],
     statsDaily: [],
-    dataArrived: false
+    dataArrived: false,
+    errorMessage: ''
   })
 
   // hook to fetch data from database and set state.
@@ -36,16 +38,21 @@ const DailyData = () => {
         }))
       })
       .catch((error) => {
+        setState((prev) => ({ ...prev, errorMessage: error.response.data }))
         console.log(error.response.status)
         console.log(error.response.headers)
-        console.log('error in DailyData: ', error.response.data)
+        console.log(error.response.data)
       })
   }, [URL])
   return (
     <Container>
+      { state.errorMessage &&
+       <Error errorMessage= { state.errorMessage }/>
+      }
       <Row>
         <Col lg={6}>
           { state.dataArrived &&
+            !state.errorMessage &&
             <BarChart
               eventsDaily={ state.eventsDaily }
               statsDaily={ state.statsDaily }
@@ -54,6 +61,7 @@ const DailyData = () => {
         </Col>
         <Col lg={6}>
           { state.dataArrived &&
+            !state.errorMessage &&
             <DailyDataTable
               eventsDaily={ state.eventsDaily }
               statsDaily={ state.statsDaily }
