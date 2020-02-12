@@ -21,7 +21,7 @@ module.exports = (options) => {
     client
       .multi()
       // sets request counter value for user to 0 and expires it in 60 sec
-      .set([USER, 0, 'EX', 30, 'NX'])
+      .set([USER, 0, 'EX', 60, 'NX'])
       // we increment counter for user
       .incr(USER)
       .get(USER, (err, response) => console.log(response))
@@ -31,13 +31,13 @@ module.exports = (options) => {
         }
         // we read the response value of the nr of requests
         const requestCounter = response[1]
-        if (requestCounter > 10) {
+        if (requestCounter > 20) {
           return res.status(429)
             .send('You exceeded your quota of requests per minute! Please try again later!')
         }
         return next()
       })
 
-      client.quit(() => console.log('quiting redis'))
+    client.quit(() => console.log('quiting redis'))
   }
 }
