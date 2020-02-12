@@ -3,9 +3,7 @@ module.exports = (options) => {
   return function (req, res, next) {
     // variable to identify user
     const USER = options.name
-    const client = redis.createClient(
-      process.env.REDIS_URL || 'redis://127.0.0.1:6379'
-    )
+    const client = redis.createClient(process.env.REDIS_URL)
 
     client.on('ready', function () {
       console.log('Redis is ready')
