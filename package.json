@@ -2,9 +2,9 @@
   "name": "ws-product-nodejs",
   "version": "0.1.0",
   "description": "API work samples",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
