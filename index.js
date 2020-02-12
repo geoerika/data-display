@@ -16,6 +16,12 @@ const app = express()
 // this can be replaced in the future with a user name or other unique ids
 const name = 'erika'
 
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers',
+               'Origin, X-Requested-With, Content-Type, Accept')
+    next()
+})
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
