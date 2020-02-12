@@ -29,9 +29,7 @@ app.use(rateLimiter({ name }))
 
 // configs come from standard PostgreSQL env vars
 // const pool = new pg.Pool()
-const pool = new pg.Pool({connectionString:
-                          process.env.DATABASE_URL
-                        })
+const pool = new pg.Pool({ connectionString:process.env.DATABASE_URL })
 
 const queryHandler = (req, res, next) => {
   pool.connect()
@@ -42,8 +40,7 @@ const queryHandler = (req, res, next) => {
         client.release()
         res.json(r.rows || [])
       }).catch(next)
-  } )
-
+  })
 
   // pool.query(req.sqlQuery).then((r) => {
   //   res.json(r.rows || [])

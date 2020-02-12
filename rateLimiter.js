@@ -9,8 +9,8 @@ module.exports = (options) => {
       console.log('Redis is ready')
     })
 
-    client.on('error', function (error) {
-      console.log('Error in Redis: ', error)
+    client.on('error', function (err) {
+      console.log('Error in Redis: ', err)
     })
 
     let redisError = {};
@@ -37,7 +37,6 @@ module.exports = (options) => {
         }
         return next()
       })
-
     client.quit(() => console.log('quiting redis'))
   }
 }
