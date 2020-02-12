@@ -6,19 +6,20 @@ const pg = require('pg')
 const ENV = require('./environment')
 const path = require('path')
 const PATH = path.resolve(__dirname, '.env.' + ENV)
-// const rateLimiter = require('./rateLimiter')
+const rateLimiter = require('./rateLimiter')
 
 require('dotenv').config({ path: PATH })
 
 const app = express()
 
 // we use this variable to identify user for rateLimiter middleware
+// this can be replaced in the future with a user name or other unique ids
 const name = 'erika'
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-// app.use(rateLimiter({ name }))
+app.use(rateLimiter({ name }))
 
 // configs come from standard PostgreSQL env vars
 // const pool = new pg.Pool()
