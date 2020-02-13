@@ -20,7 +20,7 @@ const MapButtons = ({
 
   return (
     <Container className='buttonContainer align-items-center'>
-      <h5 className='title'>Click to show data / tabel</h5>
+      <h5 className='title'>Click to show data / table</h5>
       <ButtonToolbar className='justify-content-center button align-items-center'>
         <Button
           className='button buttonImpressionsMap size="sm"'
