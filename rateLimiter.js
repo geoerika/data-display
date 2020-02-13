@@ -21,10 +21,10 @@ module.exports = (options) => {
     // conflict when two requests arrive in the same time
     client.multi()
       // sets request counter value for user to 0 and expires it in 60 sec
-      .set([USER, 0, 'EX', 60, 'NX'], redis.print)
+      .set([USER, 0, 'EX', 60, 'NX'])
       // we increment counter for user
       .incr(USER)
-      .get(USER, (err, response) => console.log(response))
+      .get(USER)
       .exec((err, response) => {
         if (err) {
           return res.status(500).send(err.message)
