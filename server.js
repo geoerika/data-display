@@ -5,7 +5,7 @@ const pg = require('pg')
 const ENV = require('./environment')
 const path = require('path')
 const PATH = path.resolve(__dirname, '.env.' + ENV)
-// const rateLimiter = require('./rateLimiter')
+const rateLimiter = require('./rateLimiter')
 
 require('dotenv').config({ path: PATH })
 
@@ -24,14 +24,28 @@ app.use(function(req, res, next) {
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-// app.use(rateLimiter({ name }))
+app.use(rateLimiter({ name }))
 
 const pool = new pg.Pool({ connectionString:process.env.DATABASE_URL })
 
 const queryHandler = (req, res, next) => {
+
+  // trying to release clients to see if bug on Heroku goes away
   pool.query(req.sqlQuery).then((r) => {
     res.json(r.rows || [])
-  }).catch(next)
+    }).catch(next)
+    pool.connect()
+    .then( client => {
+      return client
+        .query(req.sqlQuery)
+        .then((r) => {
+          client.release()
+          res.json(r.rows || [])
+        }).catch(next)
+    })
+  // pool.query(req.sqlQuery).then((r) => {
+  //   res.json(r.rows || [])
+  // }).catch(next)
 }
 
 // app.get('/', (req, res) => {
