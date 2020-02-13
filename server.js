@@ -34,19 +34,19 @@ const queryHandler = (req, res, next) => {
 
   // tried to clean up connections after their use
   // to see if it impacts on the heroku app problem
-  pool.connect()
-  .then( client => {
-    return client
-      .query(req.sqlQuery)
-      .then((r) => {
-        client.release()
-        res.json(r.rows || [])
-      }).catch(next)
-  })
+  // pool.connect()
+  // .then( client => {
+  //   return client
+  //     .query(req.sqlQuery)
+  //     .then((r) => {
+  //       client.release()
+  //       res.json(r.rows || [])
+  //     }).catch(next)
+  // })
 
-  // pool.query(req.sqlQuery).then((r) => {
-  //   res.json(r.rows || [])
-  // }).catch(next)
+  pool.query(req.sqlQuery).then((r) => {
+    res.json(r.rows || [])
+  }).catch(next)
 }
 
 // app.get('/', (req, res) => {
