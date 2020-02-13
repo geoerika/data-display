@@ -14,10 +14,6 @@ module.exports = (options) => {
       console.log('Error in Redis: ', err)
     })
 
-    let redisError = {};
-
-    // start multi transactions for one request so we avoid
-    // conflict when two requests arrive in the same time
     client.multi()
       // sets request counter value for user to 0 and expires it in 60 sec
       .set([USER, 0, 'EX', 60, 'NX'], redis.print)
@@ -31,9 +27,9 @@ module.exports = (options) => {
         }
         // we read the response value of the nr of requests
         const requestCounter = response[1]
-        if (requestCounter > 35) {
+        if (requestCounter > 20) {
           return res.status(429)
-            .send('You exceeded your quota of requests per minute! Please try again later!')
+            .send('You exceeded your quota of requests per minute! Please try again in a minute 😎!')
         }
         return next()
       })

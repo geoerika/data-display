@@ -12,7 +12,7 @@ require('dotenv').config({ path: PATH })
 const app = express()
 
 // we use this variable to identify user for rateLimiter middleware
-// this can be replaced in the future with a user name or other unique ids
+// this should be replaced in the future with a user name or other unique ids
 const name = 'serika'
 
 app.use(function(req, res, next) {
@@ -31,21 +31,21 @@ const pool = new pg.Pool({ connectionString:process.env.DATABASE_URL })
 const queryHandler = (req, res, next) => {
 
   // trying to release clients to see if bug on Heroku goes away
-  pool.query(req.sqlQuery).then((r) => {
-    res.json(r.rows || [])
-    }).catch(next)
-    pool.connect()
-    .then( client => {
-      return client
-        .query(req.sqlQuery)
-        .then((r) => {
-          client.release()
-          res.json(r.rows || [])
-        }).catch(next)
-    })
   // pool.query(req.sqlQuery).then((r) => {
   //   res.json(r.rows || [])
-  // }).catch(next)
+  //   }).catch(next)
+  //   pool.connect()
+  //   .then( client => {
+  //     return client
+  //       .query(req.sqlQuery)
+  //       .then((r) => {
+  //         client.release()
+  //         res.json(r.rows || [])
+  //       }).catch(next)
+  //   })
+  pool.query(req.sqlQuery).then((r) => {
+    res.json(r.rows || [])
+  }).catch(next)
 }
 
 // app.get('/', (req, res) => {
