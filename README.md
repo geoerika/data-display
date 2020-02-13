@@ -1,7 +1,7 @@
 Work Sample for Product Aspect, Node.js Variant
 ---
 
-Live at : https://datadisplayreact.herokuapp.com/geodata
+Live at : https://datadisplayreact.herokuapp.com
 
 ### Setup and Run
 
