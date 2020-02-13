@@ -24,7 +24,7 @@ app.use(function(req, res, next) {
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-// this use of the middleware is not suitable for deployment
+// this use of the middleware generally is not suitable for deployment
 // app.use(rateLimiter({ name }))
 
 const pool = new pg.Pool({ connectionString:process.env.DATABASE_URL })
@@ -53,7 +53,7 @@ const queryHandler = (req, res, next) => {
 //   res.send('Welcome to EQ Works 😎')
 // })
 
-app.get('/events/hourly', rateLimiter, (req, res, next) => {
+app.get('/events/hourly', rateLimiter(name), (req, res, next) => {
   req.sqlQuery = `
     SELECT date, hour, events
     FROM public.hourly_events
@@ -63,7 +63,7 @@ app.get('/events/hourly', rateLimiter, (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/events/daily', rateLimiter, (req, res, next) => {
+app.get('/events/daily', rateLimiter(name), (req, res, next) => {
   req.sqlQuery = `
     SELECT date, SUM(events) AS events
     FROM public.hourly_events
@@ -74,7 +74,7 @@ app.get('/events/daily', rateLimiter, (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/stats/hourly', rateLimiter, (req, res, next) => {
+app.get('/stats/hourly', rateLimiter(name), (req, res, next) => {
   req.sqlQuery = `
     SELECT date, hour, impressions, clicks, revenue
     FROM public.hourly_stats
@@ -84,7 +84,7 @@ app.get('/stats/hourly', rateLimiter, (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/stats/daily', rateLimiter, (req, res, next) => {
+app.get('/stats/daily', rateLimiter(name), (req, res, next) => {
   req.sqlQuery = `
     SELECT date,
         SUM(impressions) AS impressions,
@@ -98,7 +98,7 @@ app.get('/stats/daily', rateLimiter, (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/poi', rateLimiter,(req, res, next) => {
+app.get('/poi', rateLimiter(name), (req, res, next) => {
   req.sqlQuery = `
     SELECT  p.poi_id, p.name, p.lat, p.lon,
             SUM(impressions) AS impressions,
