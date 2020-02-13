@@ -29,7 +29,7 @@ const GeoData = () => {
     ).then(response => {
       console.log('response in Map: ', response);
       setState(prev => ({
-        ...state,
+        ...prev,
         poiData: response.data,
         dataArrived: true
       }))
@@ -39,7 +39,7 @@ const GeoData = () => {
         console.log(error.response.headers)
         console.log(error.response.data)
       })
-  }, [])
+  }, [URL])
 
   // we set and retrieve updated values here
   const {
