@@ -16,7 +16,7 @@ module.exports = (options) => {
 
     client.multi()
       // sets request counter value for user to 0 and expires it in 60 sec
-      .set([USER, 0, 'EX', 60, 'NX'], redis.print)
+      .set([USER, 0, 'EX', 60, 'NX'])
       // we increment counter for user
       .incr(USER)
       // console.log kept for now to debug
