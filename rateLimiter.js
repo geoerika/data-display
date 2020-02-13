@@ -1,3 +1,4 @@
+
 const redis = require('redis')
 module.exports = (options) => {
   return function (req, res, next) {
@@ -18,10 +19,9 @@ module.exports = (options) => {
 
     // start multi transactions for one request so we avoid
     // conflict when two requests arrive in the same time
-    client
-      .multi()
+    client.multi()
       // sets request counter value for user to 0 and expires it in 60 sec
-      .set([USER, 0, 'EX', 60, 'NX'])
+      .set([USER, 0, 'EX', 60, 'NX'], redis.print)
       // we increment counter for user
       .incr(USER)
       .get(USER, (err, response) => console.log(response))

@@ -13,7 +13,7 @@ const app = express()
 
 // we use this variable to identify user for rateLimiter middleware
 // this can be replaced in the future with a user name or other unique ids
-const name = 'erika'
+const name = 'serika'
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
