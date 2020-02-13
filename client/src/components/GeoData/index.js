@@ -18,8 +18,8 @@ const GeoData = () => {
 
   const [state, setState] = useState({
     poi: [],
-    dataArrived: false
-    // errorMessage: ''
+    dataArrived: false,
+    errorMessage: ''
   })
 
   // get data
@@ -33,13 +33,12 @@ const GeoData = () => {
         poiData: response.data,
         dataArrived: true
       }))
-    })
-    // .catch((error) => {
-    //     setState((prev) => ({ ...prev, errorMessage: error.response.data }))
-    //     console.log(error.response.status)
-    //     console.log(error.response.headers)
-    //     console.log(error.response.data)
-    //   })
+    }).catch((error) => {
+        setState((prev) => ({ ...prev, errorMessage: error.response.data }))
+        console.log(error.response.status)
+        console.log(error.response.headers)
+        console.log(error.response.data)
+      })
   }, [URL])
 
   // we set and retrieve updated values here
@@ -73,9 +72,11 @@ const GeoData = () => {
 
   return (
     <Container>
-
+      { state.errorMessage &&
+        <Error errorMessage= { state.errorMessage }/>
+      }
       { state.dataArrived &&
-
+        !state.errorMessage &&
         <Row className='bttn-table'>
           <Col>
             <MapButtons
@@ -96,7 +97,7 @@ const GeoData = () => {
       }
       <Row>
         { state.dataArrived &&
-
+          !state.errorMessage &&
           <GeoDataMap
             poiData={ state.poiData }
             /* initially the map shows only locations. */
