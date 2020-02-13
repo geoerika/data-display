@@ -14,9 +14,8 @@ const DailyData = () => {
 
   const [state, setState] = useState({
     eventsDaily: [],
-    statsDaily: [],
-    dataArrived: false,
-    errorMessage: ''
+    statsDaily: []
+    // dataArrived: false,
   })
 
   // hook to fetch data from database and set state.
@@ -37,22 +36,18 @@ const DailyData = () => {
           dataArrived: true
         }))
       })
-      .catch((error) => {
-        setState((prev) => ({ ...prev, errorMessage: error.response.data }))
-        console.log(error.response.status)
-        console.log(error.response.headers)
-        console.log(error.response.data)
-      })
+      // .catch((error) => {
+      //   setState((prev) => ({ ...prev, errorMessage: error.response.data }))
+      //   console.log(error.response.status)
+      //   console.log(error.response.headers)
+      //   console.log(error.response.data)
+      // })
   }, [URL])
   return (
     <Container>
-      { state.errorMessage &&
-       <Error errorMessage= { state.errorMessage }/>
-      }
       <Row>
         <Col lg={6}>
           { state.dataArrived &&
-            !state.errorMessage &&
             <BarChart
               eventsDaily={ state.eventsDaily }
               statsDaily={ state.statsDaily }
@@ -61,7 +56,6 @@ const DailyData = () => {
         </Col>
         <Col lg={6}>
           { state.dataArrived &&
-            !state.errorMessage &&
             <DailyDataTable
               eventsDaily={ state.eventsDaily }
               statsDaily={ state.statsDaily }
