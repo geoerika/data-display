@@ -1,0 +1,92 @@
+.title {
+  margin-top: 1rem;
+}
+
+%events-ext {
+  background-color: blueviolet !important;
+  border-color: blueviolet;
+  outline: none;
+  box-shadow: none !important;
+}
+
+%clicks-ext {
+  background-color: magenta !important;
+  border-color: magenta;
+  outline: none;
+  box-shadow: none !important;
+}
+
+%revenue-ext {
+  background-color: lime !important;
+  border-color: lime;
+  outline: none;
+  box-shadow: none !important;
+}
+
+
+%impressions-ext {
+  background-color: yellow !important;
+  border-color: yellow;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonEventsMap {
+  background-color: blueviolet;
+  color: black;
+  border-color: blueviolet;
+  margin: 5px;
+}
+
+.button .buttonEventsMap:hover {
+  @extend %events-ext;
+}
+
+.button .buttonEventsMap:focus {
+  @extend %events-ext;
+}
+
+.button .buttonClicksMap {
+  background-color: magenta;
+  color: black;
+  border-color: magenta;
+  margin: 5px;
+}
+
+.button .buttonClicksMap:hover {
+  @extend %clicks-ext;
+}
+
+.button .buttonClicksMap:focus {
+  @extend %clicks-ext;
+}
+
+.button .buttonRevenueMap {
+  background-color: lime;
+  color: black;
+  border-color: lime;
+  margin: 5px;
+}
+
+.button .buttonRevenueMap:hover {
+  @extend %revenue-ext;
+}
+
+.button .buttonRevenueMap:focus {
+  @extend %revenue-ext;
+}
+
+.button .buttonImpressionsMap {
+  background-color: yellow;
+  color: black;
+  border-color: yellow;
+  margin: 5px;
+}
+
+.button .buttonImpressionsMap:hover {
+  @extend %impressions-ext;
+}
+
+.button .buttonImpressionsMap:focus {
+  @extend %impressions-ext;
+}
