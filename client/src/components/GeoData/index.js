@@ -82,18 +82,14 @@ const GeoData = () => {
       }
       { state.dataArrived &&
         !state.errorMessage &&
-        <Col className='bttn-table' md={ 5 } >
-          <Row>
-            <MapButtons
-              onClickImpressions={ () => selectDataOnMap(SHOWIMPRESSIONS) }
-              onClickRevenue={ () => selectDataOnMap(SHOWREVENUE) }
-              onClickClicks={ () => selectDataOnMap(SHOWCLICKS) }
-              onClickEvents={ () => selectDataOnMap(SHOWEVENTS) }
-            />
-          </Row>
-          <Row>
-              <GeoDataTable poiData={ state.poiData }/>
-          </Row>
+        <Col className='bttn-table align-items-center' md={ 5 } >
+          <MapButtons
+            onClickImpressions={ () => selectDataOnMap(SHOWIMPRESSIONS) }
+            onClickRevenue={ () => selectDataOnMap(SHOWREVENUE) }
+            onClickClicks={ () => selectDataOnMap(SHOWCLICKS) }
+            onClickEvents={ () => selectDataOnMap(SHOWEVENTS) }
+          />
+           <GeoDataTable poiData={ state.poiData }/>
         </Col>
       }
       </Row>
