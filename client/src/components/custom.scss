@@ -1,0 +1,19 @@
+.navbar {
+  background-color: #C43343 !important
+}
+
+.navbar-dark .navbar-brand {
+  font-weight: bold;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgb(232, 234, 245);
+  font-weight: bold;
+}
+
+.container {
+  background-color: rgb(232, 234, 245);
+}
+
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
