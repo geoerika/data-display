@@ -61,7 +61,7 @@ const GeoData = () => {
   const SHOWEVENTS = 'showEvents'
 
   return (
-    <Container>
+    <Container size='xl'>
       { state.errorMessage &&
         <Error errorMessage= { state.errorMessage }/>
       }

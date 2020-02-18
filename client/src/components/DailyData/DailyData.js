@@ -43,7 +43,7 @@ const DailyData = () => {
         })
   }, [URL])
   return (
-    <Container>
+    <Container fluid={ true }>
       { state.errorMessage &&
        <Error errorMessage= { state.errorMessage }/>
       }
