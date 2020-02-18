@@ -30,7 +30,6 @@ const HourlyData = () => {
         axiosGet(`${URL}/stats/hourly`)
       )
     ]).then((all) => {
-      console.log('all in HourlyData: ', all);
       setState(prev => ({
         eventsHourly: all[0].data,
         statsHourly: all[1].data,
