@@ -1,0 +1,92 @@
+.title {
+  margin-top: 1rem;
+}
+
+%events-ext {
+  background-color: #940031 !important;
+  border-color: #940031;
+  outline: none;
+  box-shadow: none !important;
+}
+
+%clicks-ext {
+  background-color: #C43343 !important;
+  border-color: #C43343;
+  outline: none;
+  box-shadow: none !important;
+}
+
+%revenue-ext {
+  background-color: #DC5429 !important;
+  border-color: #DC5429;
+  outline: none;
+  box-shadow: none !important;
+}
+
+
+%impressions-ext {
+  background-color: #FF821D !important;
+  border-color: #FF821D;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.button .buttonEvents {
+  background-color: #940031;
+  color: white;
+  border-color: #940031;
+  margin: 5px;
+}
+
+.button .buttonEvents:hover {
+  @extend %events-ext;
+}
+
+.button .buttonEvents:focus {
+  @extend %events-ext;
+}
+
+.button .buttonClicks {
+  background-color: #C43343;
+  color: white;
+  border-color: #C43343;
+  margin: 5px;
+}
+
+.button .buttonClicks:hover {
+  @extend %clicks-ext;
+}
+
+.button .buttonClicks:focus {
+  @extend %clicks-ext;
+}
+
+.button .buttonRevenue {
+  background-color: #DC5429;
+  color: white;
+  border-color: #DC5429;
+  margin: 5px;
+}
+
+.button .buttonRevenue:hover {
+  @extend %revenue-ext;
+}
+
+.button .buttonRevenue:focus {
+  @extend %revenue-ext;
+}
+
+.button .buttonImpressions {
+  background-color: #FF821D;
+  color: white;
+  border-color: #FF821D;
+  margin: 5px;
+}
+
+.button .buttonImpressions:hover {
+  @extend %impressions-ext;
+}
+
+.button .buttonImpressions:focus {
+  @extend %impressions-ext;
+}
