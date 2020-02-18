@@ -5,10 +5,9 @@ import Navigation from './Navigation'
 import DailyData from './DailyData/DailyData'
 import HourlyData from './HourlyData/HourlyData'
 import GeoData from './GeoData/index'
-import './App.css'
+import './App.scss'
 
 const App = () => {
-
   return (
     <main className='App'>
       <Navigation/>
