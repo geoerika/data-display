@@ -5,7 +5,7 @@ import {
   VictoryChart, VictoryAxis, VictoryLabel,
   VictoryGroup, VictoryArea
 } from 'victory'
-import '../shared/Buttons.css'
+import '../shared/Buttons.scss'
 
 /**
  * AreaChart - creates component to display hourly data on a chart.
@@ -89,7 +89,6 @@ const AreaChart = ({ eventsHourly, statsHourly }) => {
           }
         />
         <VictoryAxis
-          label={ 'log' }
           dependentAxis={ true }
           style={{
             ticks: { stroke: 'black', size: 4 }
