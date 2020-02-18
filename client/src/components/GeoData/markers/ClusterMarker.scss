@@ -1,0 +1,36 @@
+//source: https://github.com/istarkov/google-map-clustering-example
+
+@function stripUnits($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+$marker-width: 20px;
+
+.marker:export {
+  position: relative;
+  cursor: pointer;
+  width: 20px ;
+  height: 20px ;
+  left: 20px ;
+  top: 20px ;
+  border: 5px;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  filter: red;
+  align-items: center;
+  justify-content: center;
+}
+
+.text:export {
+  markerSize: stripUnits($marker-width);
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  margin-left: 40 px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
