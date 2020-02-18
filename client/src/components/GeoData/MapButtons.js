@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Button, ButtonToolbar } from 'react-bootstrap'
-import './MapButtons.css'
+import './MapButtons.scss'
 
 /**
  * MapButtons - creates component to display buttons on the map page.
@@ -10,40 +10,32 @@ import './MapButtons.css'
  * @return {any} - a React component with Bootstrap buttons.
  */
 const MapButtons = ({
-  showDataTableButton,
   onClickImpressions,
   onClickRevenue,
   onClickClicks,
-  onClickEvents,
-  onClickTable
+  onClickEvents
 }) => {
 
   return (
     <Container className='buttonContainer align-items-center'>
-      <h5 className='title'>Click to show data / table</h5>
+      <h5 className='title'>Click to display data</h5>
       <ButtonToolbar className='justify-content-center button align-items-center'>
         <Button
           className='button buttonImpressionsMap size="sm"'
-          onClick={onClickImpressions}
+          onClick={ onClickImpressions }
         >Impressions</Button>
         <Button
           className='button buttonRevenueMap size="sm"'
-          onClick={onClickRevenue}
+          onClick={ onClickRevenue }
         >Revenue</Button>
         <Button
           className='button buttonClicksMap size="sm"'
-          onClick={onClickClicks}
+          onClick={ onClickClicks }
         >Clicks</Button>
         <Button
           className='button buttonEventsMap size="sm"'
-          onClick={onClickEvents}
+          onClick={ onClickEvents }
         >Events</Button>
-        { showDataTableButton &&
-          <Button
-            className='button buttonMapTable size="sm"'
-            onClick={onClickTable}
-          >Data Table</Button>
-        }
       </ButtonToolbar>
     </Container>
   )
