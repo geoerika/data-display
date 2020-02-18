@@ -52,14 +52,14 @@ const HourlyDataTable = ({ statsHourly, eventsHourly }) => {
   const dataList = createTableData()
 
   return (
-    <div style={{ maxWidth: '100%' }}>
+    <div style={{ maxWidth: '100%', marginTop: '10px' }}>
       <MaterialTable
         components={{
           Toolbar: (props) => (
             <div style =
               {{
-                color: '#940031',
-                backgroundColor: '#e8eaf5',
+                color: 'rgb(232, 234, 245)',
+                backgroundColor: '#FF821D',
                 fontWeight: 'bold'
               }}
             >
