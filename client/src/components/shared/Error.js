@@ -7,7 +7,7 @@ import { Alert } from 'react-bootstrap'
  */
 const Error = ({ errorMessage }) => {
   return (
-      <Alert variant={ 'danger' }>
+      <Alert variant={ 'danger' } style={{ 'marginTop': '20vh' }}>
         { errorMessage }
       </Alert>
     )
