@@ -1,6 +1,5 @@
 import React from 'react'
-import { Nav } from 'react-bootstrap'
-
+import { Navbar, Nav } from 'react-bootstrap'
 /**
  * Navigation - defines app routing.
  * @return {any} - a React component to help navigating the app.
@@ -8,20 +7,15 @@ import { Nav } from 'react-bootstrap'
 const Navigation = () => {
 
   return (
-    <Nav variant='tabs'>
-      <Nav.Item>
+    <Navbar bg='dark' variant='dark'>
+      <Navbar.Brand>Data Display React</Navbar.Brand>
+      <Nav>
         <Nav.Link href='/'>Home</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
         <Nav.Link href='/dailydata'>DailyDataChart</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
         <Nav.Link href='/hourlydata'>HourlyDataChart</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
         <Nav.Link href='/geodata'>GeoMapData</Nav.Link>
-      </Nav.Item>
-    </Nav>
+      </Nav>
+    </Navbar>
   )
 }
 
