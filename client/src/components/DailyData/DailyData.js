@@ -30,7 +30,6 @@ const DailyData = () => {
       )
     ])
       .then((all) => {
-        console.log('all in DailyData: ', all);
         setState(prev => ({
           eventsDaily: all[0].data,
           statsDaily: all[1].data,
