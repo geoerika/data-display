@@ -1,4 +1,3 @@
-
 const redis = require('redis')
 module.exports = (name) => {
   return function (req, res, next) {
@@ -19,8 +18,6 @@ module.exports = (name) => {
       .set([USER, 0, 'EX', 60, 'NX'])
       // we increment counter for user
       .incr(USER)
-      // console.log kept for now to debug
-      .get(USER, (err, response) => console.log(response))
       .exec((err, response) => {
         if (err) {
           return res.status(500).send(err.message)
@@ -33,6 +30,6 @@ module.exports = (name) => {
         }
         return next()
       })
-    client.quit(() => console.log('quiting redis'))
+    client.quit()
   }
 }
