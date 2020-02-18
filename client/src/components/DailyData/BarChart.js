@@ -2,7 +2,7 @@ import React from 'react'
 import { VictoryChart, VictoryGroup, VictoryBar, VictoryAxis, VictoryLabel } from 'victory'
 import Buttons from '../shared/Buttons'
 import useHideAddData from '../../hooks/useHideAddData'
-import '../shared/Buttons.css'
+import '../shared/Buttons.scss'
 
 /**
  * BarChart - creates component to display daily data on a chart.
@@ -56,6 +56,11 @@ export default function BarChart ({ eventsDaily, statsDaily }) {
   const clicksDailyData = formatBarChartData(statsDaily, 'clicks')
   const revenueDailyData = formatBarChartData(statsDaily, 'revenue')
 
+  // create an array of dates used for the chart to use on the x axis
+  const dateArray = eventsDailyData.map( elem => {
+    return elem.x;
+  })
+
   return (
     <div>
       <Buttons
@@ -71,7 +76,7 @@ export default function BarChart ({ eventsDaily, statsDaily }) {
         minDomain={{ y: 1 }}
       >
         <VictoryAxis
-          label={ 'date' }
+          tickValues={ dateArray }
           style={{
             ticks: { stroke: 'black', size: 4 },
             axis: { line: { width: 4 } }
@@ -81,7 +86,6 @@ export default function BarChart ({ eventsDaily, statsDaily }) {
           }
         />
         <VictoryAxis
-          label={ 'log' }
           dependentAxis={ true }
           style={{
             ticks: { stroke: 'black', size: 4 }
