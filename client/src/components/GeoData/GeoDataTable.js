@@ -19,7 +19,6 @@ const GeoDataTable = ({ poiData }) => {
       array[i].clicks = Number(array[i].clicks)
       array[i].events = Number(array[i].events)
     }
-
     return array
   }
 
@@ -27,13 +26,13 @@ const GeoDataTable = ({ poiData }) => {
   const poiTableData = createDataArray(poiData)
 
   return (
-    <div style={{ maxWidth: '100%' }}>
+    <div style={{ maxWidth: '100%', marginTop: '10px' }}>
       <MaterialTable
         components={{
           Toolbar: props => (
             <div style = {{
-              color: '#940031',
-              backgroundColor: '#e8eaf5',
+              color: 'rgb(232, 234, 245)',
+              backgroundColor: '#FF821D',
               fontWeight: 'bold'
             }}
             >
