@@ -1,11 +1,10 @@
-Work Sample for Product Aspect, Node.js Variant
+Data Display in React (charts, tables, map)
 ---
-
-[What is this for?](https://github.com/EQWorks/work-samples#what-is-this)
+Live at : https://datadisplayreact.herokuapp.com/geodata
 
 ### Setup and Run
 
-#### Local Option Node.js 6.10+
+#### Node.js
 
 1. Clone this repository: `$ git clone git@github.com:geoerika/ws-product-nodejs.git`
 2. Open root directory and install Node.js dependencies: `$ npm install`
