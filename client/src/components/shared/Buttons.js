@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Button, ButtonToolbar } from 'react-bootstrap'
-import './Buttons.css'
+import './Buttons.scss'
 
 /**
  * Buttons - creates component to display buttons on the app pages.
@@ -10,7 +10,6 @@ import './Buttons.css'
  * @return {any} - a React component with Bootstrap buttons.
  */
 const Buttons = ({
-  showDataTableButton,
   onClickImpressions,
   onClickRevenue,
   onClickClicks,
@@ -19,31 +18,25 @@ const Buttons = ({
 }) => {
 
   return (
-    <Container className="buttonContainer align-items-center">
-      <h5 className="title">Click to remove / add data</h5>
-      <ButtonToolbar className="justify-content-center button align-items-center">
+    <Container className='buttonContainer align-items-center'>
+      <h5 className='title'>Click to remove / add data</h5>
+      <ButtonToolbar className='justify-content-center button align-items-center'>
         <Button
-          className="button buttonImpressions size='sm' "
-          onClick={onClickImpressions}
+          className="button buttonImpressions size='sm'"
+          onClick={ onClickImpressions }
         >Impressions</Button>
         <Button
           className="button buttonRevenue size='sm'"
-          onClick={onClickRevenue}
+          onClick={ onClickRevenue }
         >Revenue</Button>
         <Button
           className="button buttonClicks size='sm'"
-          onClick={onClickClicks}
+          onClick={ onClickClicks }
         >Clicks</Button>
         <Button
           className="button buttonEvents size='sm'"
-          onClick={onClickEvents}
+          onClick={ onClickEvents }
         >Events</Button>
-        { showDataTableButton &&
-          <Button
-            className="button buttonMapTable size='sm'"
-            onClick={onClickTable}
-          >Data Table</Button>
-        }
       </ButtonToolbar>
     </Container>
   )
