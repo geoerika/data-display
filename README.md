@@ -1,6 +1,6 @@
-Data Display in React (charts, tables, map)
+## Data Display in React (charts, tables, map)
 
-Live at : https://datadisplayreact.herokuapp.com
+### Live at : https://datadisplayreact.herokuapp.com
 
 ### Setup and Run
 
