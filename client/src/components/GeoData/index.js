@@ -61,14 +61,14 @@ const GeoData = () => {
   const SHOWEVENTS = 'showEvents'
 
   return (
-    <Container size='xl'>
+    <Container fluid={ true } style={{ marginTop: '20px' }}>
       { state.errorMessage &&
         <Error errorMessage= { state.errorMessage }/>
       }
       <Row>
       { state.dataArrived &&
         !state.errorMessage &&
-        <Col lg={ 7 }>
+        <Col md={ 7 } >
           { showImpressions &&
             <DataMap poiData = { state.poiData} dataType={ 'impressions' }/> }
           { showRevenue &&
@@ -82,7 +82,7 @@ const GeoData = () => {
       }
       { state.dataArrived &&
         !state.errorMessage &&
-        <Col className='bttn-table' lg={ 5 }>
+        <Col className='bttn-table' md={ 5 } >
           <Row>
             <MapButtons
               onClickImpressions={ () => selectDataOnMap(SHOWIMPRESSIONS) }

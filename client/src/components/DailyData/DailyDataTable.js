@@ -27,7 +27,7 @@ const DailyDataTable = ({ statsDaily, eventsDaily }) => {
   })
 
   return (
-    <div style={{ maxWidth: '100%', marginTop: '10px' }}>
+    <div style={{ maxWidth: '100%', marginTop: '40px' }}>
       <MaterialTable
         components={{
           Toolbar: props => (
