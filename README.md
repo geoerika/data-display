@@ -1,11 +1,6 @@
 Data Display in React (charts, tables, map)
----
-<<<<<<< HEAD
-Live at : https://datadisplayreact.herokuapp.com/geodata
-=======
 
 Live at : https://datadisplayreact.herokuapp.com
->>>>>>> 867ce15c73c274fef3485a77bf4f765ff6472a66
 
 ### Setup and Run
 
