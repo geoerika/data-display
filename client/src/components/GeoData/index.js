@@ -3,11 +3,10 @@ import axiosGet from '../shared/getData'
 import { Container, Row, Col } from 'react-bootstrap'
 import MapButtons from './MapButtons'
 import GeoDataTable from './GeoDataTable'
-import GeoDataMap from './GeoDataMap'
+import DataMap from './DataMap'
 import useHideAddData from '../../hooks/useHideAddData'
 import Error from '../shared/Error'
-import './index.css'
-import './MapButtons.css'
+import './MapButtons.scss'
 
 /**
  * GeoData - functional React component which displays buttons, table, and map on a page.
@@ -22,12 +21,11 @@ const GeoData = () => {
     errorMessage: ''
   })
 
-  // get data
+  // fetch data
   useEffect(() => {
     Promise.resolve(
       axiosGet(`${URL}/poi`)
     ).then(response => {
-      console.log('response in Map: ', response);
       setState(prev => ({
         ...prev,
         poiData: response.data,
@@ -47,67 +45,57 @@ const GeoData = () => {
     showRevenue,
     showClicks,
     showEvents,
-    showLocations,
-    showDataTable,
-    hideAddData,
     selectDataOnMap
   } =
     useHideAddData({
-      impressions: false,
+      impressions: true,
       revenue: false,
       clicks: false,
-      events: false,
-      locations: true
+      events: false
     })
-
-  // tell Buttons to show DataTable button.
-  const showDataTableButton = true
 
   // constants used to show different data on the map.
   const SHOWIMPRESSIONS = 'showImpressions'
   const SHOWREVENUE = 'showRevenue'
   const SHOWCLICKS = 'showClicks'
   const SHOWEVENTS = 'showEvents'
-  const SHOWDATATABLE = 'showDataTable'
 
   return (
     <Container>
       { state.errorMessage &&
         <Error errorMessage= { state.errorMessage }/>
       }
+      <Row>
       { state.dataArrived &&
         !state.errorMessage &&
-        <Row className='bttn-table'>
-          <Col>
+        <Col lg={ 7 }>
+          { showImpressions &&
+            <DataMap poiData = { state.poiData} dataType={ 'impressions' }/> }
+          { showRevenue &&
+            <DataMap poiData = { state.poiData} dataType={ 'revenue' }/> }
+          { showClicks&&
+            <DataMap poiData = { state.poiData} dataType={ 'clicks' }/> }
+          { showEvents &&
+            <DataMap poiData = { state.poiData} dataType={ 'events' }/> }
+        </Col>
+
+      }
+      { state.dataArrived &&
+        !state.errorMessage &&
+        <Col className='bttn-table' lg={ 5 }>
+          <Row>
             <MapButtons
-              showDataTableButton={ showDataTableButton }
               onClickImpressions={ () => selectDataOnMap(SHOWIMPRESSIONS) }
               onClickRevenue={ () => selectDataOnMap(SHOWREVENUE) }
               onClickClicks={ () => selectDataOnMap(SHOWCLICKS) }
               onClickEvents={ () => selectDataOnMap(SHOWEVENTS) }
-              onClickTable={ () => hideAddData(SHOWDATATABLE) }
             />
-          </Col>
-          <Col>
-            { showDataTable &&
+          </Row>
+          <Row>
               <GeoDataTable poiData={ state.poiData }/>
-            }
-          </Col>
-        </Row>
+          </Row>
+        </Col>
       }
-      <Row>
-        { state.dataArrived &&
-          !state.errorMessage &&
-          <GeoDataMap
-            poiData={ state.poiData }
-            /* initially the map shows only locations. */
-            showImpressions={ showImpressions }
-            showRevenue={ showRevenue }
-            showClicks={ showClicks }
-            showEvents={ showEvents }
-            showLocations={ showLocations }
-          />
-        }
       </Row>
     </Container>
   )
