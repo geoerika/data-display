@@ -74,6 +74,10 @@ export default function BarChart ({ eventsDaily, statsDaily }) {
         domainPadding={ 25 }
         scale={{ y: 'log' }}
         minDomain={{ y: 1 }}
+        animate={{
+          duration: 500,
+          onLoad: { duration: 500 }
+        }}
       >
         <VictoryAxis
           tickValues={ dateArray }

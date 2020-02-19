@@ -74,6 +74,10 @@ const AreaChart = ({ eventsHourly, statsHourly }) => {
       <VictoryChart
         scale={{ y: 'log' }}
         minDomain={{ y: 1 }}
+        animate={{
+          duration: 500,
+          onLoad: { duration: 500 }
+        }}
       >
         <VictoryAxis
           label={ 'hour' }
@@ -104,7 +108,7 @@ const AreaChart = ({ eventsHourly, statsHourly }) => {
         <VictoryGroup
           style={{
             data: {
-              strokeWidth: 3,
+              strokeWidth: 2,
               fillOpacity: 0.5
             }
           }}
