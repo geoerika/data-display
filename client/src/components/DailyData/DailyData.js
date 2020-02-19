@@ -57,7 +57,7 @@ const DailyData = () => {
             />
           }
         </Col>
-        <Col lg={6}>
+        <Col lg={6} style={{ height: '100vh' }}>
           { state.dataArrived &&
             !state.errorMessage &&
             <DailyDataTable

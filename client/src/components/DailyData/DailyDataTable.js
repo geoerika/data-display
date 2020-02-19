@@ -27,7 +27,7 @@ const DailyDataTable = ({ statsDaily, eventsDaily }) => {
   })
 
   return (
-    <div style={{ maxWidth: '100%', marginTop: '40px' }}>
+    <div style={{ maxWidth: '100%', marginTop: '9%' }}>
       <MaterialTable
         components={{
           Toolbar: props => (
@@ -42,7 +42,7 @@ const DailyDataTable = ({ statsDaily, eventsDaily }) => {
           )
         }}
         options={{
-          pageSize: 10,
+          pageSize: 7,
           search: true,
           padding: 'dense',
           headerStyle: { color: '#940031', fontWeight: 'bold' }
