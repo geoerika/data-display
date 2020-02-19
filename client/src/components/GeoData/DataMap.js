@@ -33,7 +33,7 @@ const DataMap = ({ poiData, dataType }) => {
   // code below has been modified from https://github.com/istarkov/google-map-clustering-example.
   const GMap = ({
     markersData,
-    style, hoverDistance, options,
+    options,
     mapProps: { center, zoom },
     onChange,
     clusters
@@ -41,9 +41,7 @@ const DataMap = ({ poiData, dataType }) => {
     <div style={{ height: '90vh', width: '100%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: GMAPAPIKEY }}
-        style={style}
         options={options}
-        hoverDistance={hoverDistance}
         center={center}
         zoom={zoom}
         onChange={onChange}
@@ -70,7 +68,6 @@ const DataMap = ({ poiData, dataType }) => {
   const GMapHOC = compose(
     defaultProps({
       clusterRadius: 62,
-      hoverDistance: 30,
       options: {
         minZoom: 3,
         maxZoom: 15
@@ -124,7 +121,7 @@ const DataMap = ({ poiData, dataType }) => {
               text: numPoints,
               numPoints,
               id: `${numPoints}_${points[0].id}`
-            }))
+          }))
           : []
       })
     )
