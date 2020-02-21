@@ -2,16 +2,28 @@
 
 ### Live at : https://datadisplayreact.herokuapp.com
 
-### Setup and Run
+A simple application displaying data in React, with charts, tables, and map. Implemented with React, JavaScript, Node.js, Victory Charts, Google Maps, Bootstrap.
 
-#### Node.js
+Clusters were created using istarkov solution: https://github.com/istarkov/google-map-clustering-example
 
-1. Clone this repository: `$ git clone git@github.com:geoerika/ws-product-nodejs.git`
-2. Open root directory and install Node.js dependencies: `$ npm install`
-3. I used redis for cache to implement a rate limiting functionality, therefore, follow instructions (https://redis.io/topics/quickstart) to set up redis locally and start server with : `redis-server`
-3. Set environment variables given in the problem and run `$ npm run dev`
-4. Open your browser and point to `localhost:5555`
-5. Open client directory and install dependencies for React front end: `$ npm install`
-6. Obtain a Google Maps Api key and place it in the .env files
-7. Open a second terminal and run `$ npm start`
-8. The application should launch at `http://localhost:3000/`
+Cluster symbol source: https://github.com/googlemaps/v3-utility-library/blob/master/markerclusterer/images/m4.png
+
+### Final product:
+
+Bar chart with table
+!["Screenshot of bar chart with table"](https://github.com/geoerika/ws-product-nodejs/blob/master/docs/BarChart.png)
+
+Bar chart with table - some data removed
+!["Screenshot of bar chart with table"](https://github.com/geoerika/ws-product-nodejs/blob/master/docs/BarChart_data_removed.png)
+
+Area chart with table
+!["Screenshot of bar chart with table"](https://github.com/geoerika/ws-product-nodejs/blob/master/docs/AreaChart.png)
+
+Area chart with table - some data removed
+!["Screenshot of bar chart with table"](https://github.com/geoerika/ws-product-nodejs/blob/master/docs/AreaChart_data_removed.png)
+
+Map with data, data clusters, and table
+!["Screenshot of bar chart with table"](https://github.com/geoerika/ws-product-nodejs/blob/master/docs/Map.png)
+
+Map with data, data clusters, and table with active search
+!["Screenshot of bar chart with table"](https://github.com/geoerika/ws-product-nodejs/blob/master/docs/Map_table_search.png)
