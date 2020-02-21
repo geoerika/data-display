@@ -23,7 +23,7 @@ Area chart with table - some data removed
 !["Screenshot of bar chart with table"](https://github.com/geoerika/ws-product-nodejs/blob/master/docs/AreaChart_data_removed.png)
 
 Map with data, data clusters, and table
-!["Screenshot of bar chart with table"](https://github.com/geoerika/ws-product-nodejs/blob/master/docs/Map.png)
+!["Screenshot of bar chart with table"](https://github.com/geoerika/ws-product-nodejs/blob/master/docs/MapData.png)
 
 Map with data, data clusters, and table with active search
-!["Screenshot of bar chart with table"](https://github.com/geoerika/ws-product-nodejs/blob/master/docs/Map_table_search.png)
+!["Screenshot of bar chart with table"](https://github.com/geoerika/ws-product-nodejs/blob/master/docs/MapData_with_active_search.png)
